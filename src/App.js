@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { baseUrl, headers } from "./api";
+import "./App.css";
 
 function App() {
+  const [products, setProducts] = useState([]);
+  const [errors, setErrors] = useState({});
+
+  async function fetchProducts(method = "GET") {
+    const res = await fetch(`${baseUrl}/products`, { method, headers });
+    res
+      .json()
+      .then(products => setProducts(products))
+      .catch(err => setErrors(err));
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Challenge</h1>
+      <ul>{products.length ? products.map(p => <li key={p._id}>{p.name}</li>) : ""} </ul>
     </div>
   );
 }
