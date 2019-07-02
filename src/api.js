@@ -10,25 +10,25 @@ const HEADERS = {
   Authorization: `Bearer ${TOKEN}`
 };
 
-async function fetchAPI(url, setState, method = "GET", extra = {}) {
+async function fetchAPI(url, set, method = "GET", extra = {}) {
   const options = { method, headers: HEADERS, ...extra };
-  console.warn(options);
   return await fetch(`${BASE_URL}${url}`, options)
     .then(res => res.json())
-    .then(data => setState(data))
+    .then(data => set(data))
     .catch(err => err);
 }
 
+function buildBody(param) {
+  return { body: JSON.stringify(param) };
+}
+
 /* GET */
-const getProducts = setState => fetchAPI("/products", setState);
-const getUserMe = setState => fetchAPI("/user/me", setState);
-const getUserHistory = setState => fetchAPI("/user/history", setState);
+const getProducts = set => fetchAPI("/products", set);
+const getUserMe = set => fetchAPI("/user/me", set);
+const getUserHistory = set => fetchAPI("/user/history", set);
 
 /* POST */
-const postPoints = (setState, amount) =>
-  fetchAPI("/user/points", setState, "POST", { body: JSON.stringify({ amount }) });
-
-const postRedeem = (setState, productId) =>
-  fetchAPI("/redeem", setState, "POST", { body: JSON.stringify({ productId }) });
+const postPoints = (set, amount) => fetchAPI("/user/points", set, "POST", buildBody({ amount }));
+const postRedeem = (set, productId) => fetchAPI("/redeem", set, "POST", buildBody({ productId }));
 
 export { getProducts, getUserMe, getUserHistory, postPoints, postRedeem };

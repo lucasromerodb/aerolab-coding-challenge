@@ -54,9 +54,11 @@ function App() {
       <h2>Products List</h2>
       <ul>
         {products.length
-          ? products.map(p => (
-              <li key={p._id}>
-                {p.name} - ({p._id})
+          ? products.map(i => (
+              <li key={i._id}>
+                <button onClick={() => redeemProduct(i._id)}>
+                  Add: ${i.cost} - {i.name}
+                </button>
               </li>
             ))
           : ""}{" "}
@@ -66,3 +68,7 @@ function App() {
 }
 
 export default App;
+
+// resetear los puntos
+// restar putos al usuario, no hay post (redux?)
+//
