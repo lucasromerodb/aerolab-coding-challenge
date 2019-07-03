@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+
+import Product from "./components/product";
+import { setRedeemMsgAction } from "./ducks/products";
+
 import { getProducts, getUserMe, getUserHistory, postPoints, postRedeem } from "./api";
 import { sortBy } from "./utils";
-import "./App.css";
+// import "./App.css";
 
-function App(props) {
+function App({ redeemMsg, setRedeemMsg }) {
   const [products, setProducts] = useState([]);
   const [userMe, setUserMe] = useState({});
   const [userHistory, setUserHistory] = useState([]);
   const [pointsMsg, setPointsMsg] = useState({});
-  const [redeemMsg, setRedeemMsg] = useState({});
+  // const [redeemMsg, setRedeemMsg] = useState({});
 
   function addPoints() {
     postPoints(setPointsMsg, 1000);
@@ -32,11 +37,18 @@ function App(props) {
     getProducts(setProducts);
     getUserMe(setUserMe);
     getUserHistory(setUserHistory);
+
     console.info("- render -");
-  }, [pointsMsg, redeemMsg]);
+    if (redeemMsg !== "") {
+      const timer = setTimeout(() => {
+        setRedeemMsg("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [redeemMsg, pointsMsg, setRedeemMsg]);
 
   return (
-    <div className="App">
+    <div>
       <h1>User</h1>
       <h2>{userMe.name}</h2>
       <h3>{userMe.points}</h3>
@@ -67,23 +79,22 @@ function App(props) {
       <button onClick={() => sortProductsByPrice("low")}>Price LOW to high</button>
       <button onClick={() => sortProductsByPrice("high")}>Price HIGH to low</button>
       <button onClick={() => sortProductsByRecent()}>Recent</button>
-      <ul>
-        {products.length
-          ? products.map(i => (
-              <li key={i._id}>
-                <button onClick={() => redeemProduct(i._id)}>
-                  Add: ${i.cost} - {i.name}
-                </button>
-              </li>
-            ))
-          : ""}{" "}
-      </ul>
+      <section>{products.length ? products.map(i => <Product key={i._id} {...i} />) : ""} </section>
     </div>
   );
 }
 
-export default App;
+// error: "User don't have enogh points" on redeem post
 
-// resetear los puntos
-// restar putos al usuario, no hay post (redux?)
-//
+const mapStateToProps = store => ({
+  redeemMsg: store.productsReducer.redeemMsg
+});
+
+const mapDispatchToProps = dispatch => ({
+  setRedeemMsg: msg => dispatch(setRedeemMsgAction(msg))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
