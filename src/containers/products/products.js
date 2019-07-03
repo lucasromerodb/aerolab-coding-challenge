@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+
 import {
   setProductsAction,
   setRedeemMsgAction,
   selectProducts,
   selectRedeemMsg
 } from "../../ducks/productsDuck";
+
 import { getProducts, postRedeem } from "../../api";
 import { sortBy } from "../../utils";
 

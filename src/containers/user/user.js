@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { setUserAction, setPointsMsgAction, selectUser } from "../../ducks/userDuck";
+
 import { getUserMe, postPoints } from "../../api";
+import { setUserAction, setPointsMsgAction, selectUser } from "../../ducks/userDuck";
+
 import Points from "../../components/points/";
 
 function User({ user, setUser, setPointsMsg }) {
@@ -28,12 +30,7 @@ function User({ user, setUser, setPointsMsg }) {
       <button onClick={() => addPoints(1000)}>Buy 1000 Points</button>
       <button onClick={() => addPoints(5000)}>Buy 5000 Points</button>
       <button onClick={() => addPoints(7500)}>Buy 7500 Points</button>
-      <p>
-        {/* {Object.keys(pointsMsg).length && <span>{pointsMsg.message}</span>} */}
-        {/* <br /> */}
-        {/* {Object.keys(pointsMsg).length && <span>{pointsMsg["New Points"]}</span>} */}
-        {pointsMsg}
-      </p>
+      <p>{pointsMsg}</p>
     </section>
   );
 }

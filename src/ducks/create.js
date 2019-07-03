@@ -1,4 +1,5 @@
 import { createStore, combineReducers } from "redux";
+
 import products from "./productsDuck";
 import user from "./userDuck";
 

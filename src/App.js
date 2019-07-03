@@ -5,7 +5,7 @@ import User from "./containers/user/";
 
 import { getUserHistory } from "./api";
 
-function App(props) {
+function App() {
   const [userHistory, setUserHistory] = useState([]);
 
   useEffect(() => {
@@ -16,6 +16,8 @@ function App(props) {
   return (
     <div>
       <User />
+      <hr />
+      <Products />
       <hr />
       <h2>User History</h2>
       <ul>
@@ -29,8 +31,6 @@ function App(props) {
           <li>No hay compras aún...</li>
         )}
       </ul>
-      <hr />
-      <Products />
     </div>
   );
 }
