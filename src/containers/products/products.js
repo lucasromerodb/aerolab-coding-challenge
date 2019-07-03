@@ -1,12 +1,19 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { setProductsAction, setRedeemMsgAction, selectProducts } from "../../ducks/productsDuck";
+
+import {
+  setProductsAction,
+  setRedeemMsgAction,
+  selectProducts,
+  selectRedeemMsg
+} from "../../ducks/productsDuck";
+
 import { getProducts, postRedeem } from "../../api";
 import { sortBy } from "../../utils";
 
 import Product from "../../components/product";
 
-function Products({ products, setProducts, setRedeemMsg }) {
+function Products({ products, setProducts, redeemMsg, setRedeemMsg }) {
   function redeemProduct(id) {
     postRedeem(setRedeemMsg, id);
   }
@@ -23,7 +30,11 @@ function Products({ products, setProducts, setRedeemMsg }) {
 
   useEffect(() => {
     getProducts(setProducts);
-  }, [setProducts]);
+    const timer = setTimeout(() => {
+      setRedeemMsg("");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [setProducts, redeemMsg, setRedeemMsg]);
 
   return (
     <section>
@@ -31,6 +42,7 @@ function Products({ products, setProducts, setRedeemMsg }) {
       <button onClick={() => sortProductsByPrice("low")}>Price LOW to high</button>
       <button onClick={() => sortProductsByPrice("high")}>Price HIGH to low</button>
       <button onClick={() => sortProductsByRecent()}>Recent</button>
+      <p>{redeemMsg}</p>
       <section>
         {products.length
           ? products.map(p => <Product key={p._id} {...p} redeemProduct={redeemProduct} />)
@@ -41,7 +53,8 @@ function Products({ products, setProducts, setRedeemMsg }) {
 }
 
 const mapStateToProps = store => ({
-  products: selectProducts(store)
+  products: selectProducts(store),
+  redeemMsg: selectRedeemMsg(store)
 });
 
 function mapDispatchToProps(dispatch) {

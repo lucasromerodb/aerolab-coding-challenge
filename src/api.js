@@ -10,6 +10,11 @@ const HEADERS = {
   Authorization: `Bearer ${TOKEN}`
 };
 
+function buildBody(params) {
+  return { body: JSON.stringify(params) };
+}
+
+/* === REQUEST === */
 async function fetchAPI(url, set, method = "GET", extra = {}) {
   const options = { method, headers: HEADERS, ...extra };
   return await fetch(`${BASE_URL}${url}`, options)
@@ -18,16 +23,12 @@ async function fetchAPI(url, set, method = "GET", extra = {}) {
     .catch(err => err);
 }
 
-function buildBody(params) {
-  return { body: JSON.stringify(params) };
-}
-
-/* GET */
+/* === GET === */
 const getProducts = set => fetchAPI("/products", set);
 const getUserMe = set => fetchAPI("/user/me", set);
 const getUserHistory = set => fetchAPI("/user/history", set);
 
-/* POST */
+/* === POST === */
 const postPoints = (set, amount) => fetchAPI("/user/points", set, "POST", buildBody({ amount }));
 const postRedeem = (set, productId) => fetchAPI("/redeem", set, "POST", buildBody({ productId }));
 

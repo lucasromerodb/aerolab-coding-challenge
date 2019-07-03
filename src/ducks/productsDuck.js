@@ -31,7 +31,7 @@ const initialState = {
   redeemMsg: ""
 };
 
-function products(state = initialState, action = {}) {
+function productsReducer(state = initialState, action = {}) {
   switch (action.type) {
     case SET_PRODUCTS:
       return { ...state, products: action.products };
@@ -44,4 +44,4 @@ function products(state = initialState, action = {}) {
   }
 }
 
-export default products;
+export default productsReducer;
