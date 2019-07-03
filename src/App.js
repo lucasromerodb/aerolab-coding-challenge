@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { getProducts, getUserMe, getUserHistory, postPoints, postRedeem } from "./api";
+import { sortBy } from "./utils";
 import "./App.css";
 
-function App() {
+function App(props) {
   const [products, setProducts] = useState([]);
   const [userMe, setUserMe] = useState({});
   const [userHistory, setUserHistory] = useState([]);
   const [pointsMsg, setPointsMsg] = useState({});
   const [redeemMsg, setRedeemMsg] = useState({});
-
-  useEffect(() => {
-    getProducts(setProducts);
-    getUserMe(setUserMe);
-    getUserHistory(setUserHistory);
-  }, [pointsMsg, redeemMsg]);
 
   function addPoints() {
     postPoints(setPointsMsg, 1000);
@@ -22,6 +17,23 @@ function App() {
   function redeemProduct(productId) {
     postRedeem(setRedeemMsg, productId);
   }
+
+  function sortProductsByPrice(first = "low") {
+    const sorted = sortBy(products, first);
+    setProducts(sorted);
+  }
+
+  function sortProductsByRecent() {
+    const sorted = sortBy(products, "high", "_id");
+    setProducts(sorted);
+  }
+
+  useEffect(() => {
+    getProducts(setProducts);
+    getUserMe(setUserMe);
+    getUserHistory(setUserHistory);
+    console.info("- render -");
+  }, [pointsMsg, redeemMsg]);
 
   return (
     <div className="App">
@@ -52,6 +64,9 @@ function App() {
         )}
       </ul>
       <h2>Products List</h2>
+      <button onClick={() => sortProductsByPrice("low")}>Price LOW to high</button>
+      <button onClick={() => sortProductsByPrice("high")}>Price HIGH to low</button>
+      <button onClick={() => sortProductsByRecent()}>Recent</button>
       <ul>
         {products.length
           ? products.map(i => (
