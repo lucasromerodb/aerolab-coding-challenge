@@ -18,8 +18,8 @@ async function fetchAPI(url, set, method = "GET", extra = {}) {
     .catch(err => err);
 }
 
-function buildBody(param) {
-  return { body: JSON.stringify(param) };
+function buildBody(params) {
+  return { body: JSON.stringify(params) };
 }
 
 /* GET */
