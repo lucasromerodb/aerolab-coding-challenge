@@ -28,7 +28,6 @@ function Products({ fetching, products, redeemMsg, onRequestProducts, onRequestR
     onRequestProducts();
   }, [onRequestProducts]);
 
-  console.warn(products);
   return (
     <section>
       <h1>Products List</h1>
@@ -40,7 +39,7 @@ function Products({ fetching, products, redeemMsg, onRequestProducts, onRequestR
       {/* <button onClick={() => sortProductsByPrice("low")}>Price LOW to high</button> */}
       {/* <button onClick={() => sortProductsByPrice("high")}>Price HIGH to low</button> */}
       {/* <button onClick={() => sortProductsByRecent()}>Recent</button> */}
-      {/* <p>{redeemMsg}</p> */}
+      <p>{redeemMsg}</p>
       <section>
         {products.length
           ? products.map(p => <Product key={p._id} {...p} onRequestRedeem={onRequestRedeem} />)
@@ -56,12 +55,10 @@ const mapStateToProps = store => ({
   redeemMsg: selectRedeemMsg(store)
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onRequestProducts: () => dispatch(productsCallRequest()),
-    onRequestRedeem: productId => dispatch(redeemCallRequest(productId))
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  onRequestProducts: () => dispatch(productsCallRequest()),
+  onRequestRedeem: productId => dispatch(redeemCallRequest(productId))
+});
 
 export default connect(
   mapStateToProps,

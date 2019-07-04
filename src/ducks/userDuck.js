@@ -35,7 +35,7 @@ export const userCallSuccess = user => ({
 
 export const userCallFailure = ({ error }) => ({
   type: types.USER_CALL_FAILURE,
-  error
+  error: error || "We have some problems fetching user"
 });
 
 export const pointsCallRequest = amount => ({
@@ -43,14 +43,14 @@ export const pointsCallRequest = amount => ({
   amount
 });
 
-export const pointsCallSuccess = ({ message }) => ({
+export const pointsCallSuccess = ({ message, error }) => ({
   type: types.POINTS_CALL_SUCCESS,
-  message
+  message: message || error
 });
 
 export const pointsCallFailure = ({ error }) => ({
   type: types.POINTS_CALL_FAILURE,
-  error
+  error: error || "We have some problems posting points"
 });
 
 /* === SELECTORS === */

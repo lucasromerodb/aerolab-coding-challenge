@@ -17,7 +17,6 @@ function User({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
   useEffect(() => {
     onGetUser();
   }, [pointsMsg, redeemMsg, onGetUser]);
-  console.warn("-- user --", user);
 
   return (
     <section>
@@ -39,12 +38,10 @@ const mapStateToProps = store => ({
   redeemMsg: selectRedeemMsg(store)
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onGetUser: () => dispatch(userCallRequest()),
-    onAddPoints: amount => dispatch(pointsCallRequest(amount))
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  onGetUser: () => dispatch(userCallRequest()),
+  onAddPoints: amount => dispatch(pointsCallRequest(amount))
+});
 
 export default connect(
   mapStateToProps,

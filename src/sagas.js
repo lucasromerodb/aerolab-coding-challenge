@@ -1,5 +1,5 @@
 import { takeLatest, call, put, select } from "redux-saga/effects";
-import { getProducts, getUserMe, postRedeem, postPoints } from "./api";
+import { getProducts, getUserMe, getUserHistory, postRedeem, postPoints } from "./api";
 import {
   types as productTypes,
   productsCallSuccess,
@@ -8,6 +8,7 @@ import {
   redeemCallFailure,
   selectRedeemId
 } from "./ducks/productsDuck";
+
 import {
   types as userTypes,
   userCallSuccess,
@@ -16,6 +17,8 @@ import {
   pointsCallFailure,
   selectAmount
 } from "./ducks/userDuck";
+
+import { types as historyTypes, historyCallSuccess, historyCallFailure } from "./ducks/historyDuck";
 
 /* === GET === */
 
@@ -45,6 +48,20 @@ function* userSaga() {
 
 function* watcherUser() {
   yield takeLatest(userTypes.USER_CALL_REQUEST, userSaga);
+}
+
+// history
+function* historySaga() {
+  try {
+    const history = yield call(getUserHistory);
+    yield put(historyCallSuccess(history));
+  } catch (error) {
+    yield put(historyCallFailure(error));
+  }
+}
+
+function* watcherHistory() {
+  yield takeLatest(historyTypes.HISTORY_CALL_REQUEST, historySaga);
 }
 
 /* === POST === */
@@ -79,4 +96,4 @@ function* watcherPoints() {
   yield takeLatest(userTypes.POINTS_CALL_REQUEST, pointsSaga);
 }
 
-export { watcherProducts, watcherUser, watcherRedeem, watcherPoints };
+export { watcherProducts, watcherUser, watcherHistory, watcherRedeem, watcherPoints };
