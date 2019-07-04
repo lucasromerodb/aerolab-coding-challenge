@@ -6,7 +6,8 @@ import {
   productsCallFailure,
   redeemCallSuccess,
   redeemCallFailure,
-  selectRedeemId
+  selectRedeemId,
+  selectSortBy
 } from "./ducks/productsDuck";
 
 import {
@@ -18,6 +19,8 @@ import {
   selectAmount
 } from "./ducks/userDuck";
 
+import { sortArrBy } from "./utils";
+
 import { types as historyTypes, historyCallSuccess, historyCallFailure } from "./ducks/historyDuck";
 
 /* === GET === */
@@ -25,8 +28,13 @@ import { types as historyTypes, historyCallSuccess, historyCallFailure } from ".
 // products
 function* productsSaga() {
   try {
+    const sortBy = yield select(selectSortBy);
+    console.warn(sortBy);
     const products = yield call(getProducts);
-    yield put(productsCallSuccess(products));
+    console.warn(products);
+    const sorted = sortBy !== null ? sortArrBy(products, sortBy) : products;
+    console.warn(sorted);
+    yield put(productsCallSuccess(sorted));
   } catch (error) {
     yield put(productsCallFailure(error));
   }

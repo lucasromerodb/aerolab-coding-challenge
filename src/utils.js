@@ -1,12 +1,12 @@
 const PROJECT_NAME = "aerolab-coding-challenge";
 
-function sortBy(arr, first = "low", prop = "cost") {
+function sortArrBy(arr, direction = "asc", prop = "cost") {
   return [...arr].sort((a, b) => {
-    if (first === "high") [a, b] = [b, a];
+    if (direction === "desc") [a, b] = [b, a];
     if (a[prop] > b[prop]) return 1;
     if (a[prop] < b[prop]) return -1;
     return 0;
   });
 }
 
-export { PROJECT_NAME, sortBy };
+export { PROJECT_NAME, sortArrBy };
