@@ -1,25 +1,22 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { getUserMe, postPoints } from "../../api";
-import { setUserAction, setPointsMsgAction, selectUser } from "../../ducks/userDuck";
+import {
+  userCallRequest,
+  pointsCallRequest,
+  selectUser,
+  selectPointsMsg
+} from "../../ducks/userDuck";
+import { selectRedeemMsg } from "../../ducks/productsDuck";
 
 import Points from "../../components/points/";
 
-function User({ user, setUser, setPointsMsg }) {
-  const { _id, name, points, pointsMsg } = user;
-
-  function addPoints(amount) {
-    postPoints(setPointsMsg, amount);
-  }
+function User({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
+  const { _id, name, points } = user;
 
   useEffect(() => {
-    getUserMe(setUser);
-    const timer = setTimeout(() => {
-      setPointsMsg("");
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [pointsMsg, setPointsMsg, setUser]);
+    onGetUser();
+  }, [pointsMsg, redeemMsg, onGetUser]);
 
   return (
     <section>
@@ -27,24 +24,24 @@ function User({ user, setUser, setPointsMsg }) {
         {name} <Points points={points} />
       </h1>
       <h2>{_id}</h2>
-      <button onClick={() => addPoints(1000)}>Buy 1000 Points</button>
-      <button onClick={() => addPoints(5000)}>Buy 5000 Points</button>
-      <button onClick={() => addPoints(7500)}>Buy 7500 Points</button>
+      <button onClick={() => onAddPoints(1000)}>Buy 1000 Points</button>
+      <button onClick={() => onAddPoints(5000)}>Buy 5000 Points</button>
+      <button onClick={() => onAddPoints(7500)}>Buy 7500 Points</button>
       <p>{pointsMsg}</p>
     </section>
   );
 }
 
 const mapStateToProps = store => ({
-  user: selectUser(store)
+  user: selectUser(store),
+  pointsMsg: selectPointsMsg(store),
+  redeemMsg: selectRedeemMsg(store)
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    setUser: user => dispatch(setUserAction(user)),
-    setPointsMsg: msg => dispatch(setPointsMsgAction(msg))
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  onGetUser: () => dispatch(userCallRequest()),
+  onAddPoints: amount => dispatch(pointsCallRequest(amount))
+});
 
 export default connect(
   mapStateToProps,
