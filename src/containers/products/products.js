@@ -11,8 +11,6 @@ import {
   selectSortBy
 } from "../../ducks/productsDuck";
 
-// import { sortBy } from "../../utils";
-
 import Product from "../../components/product";
 
 function Products({
