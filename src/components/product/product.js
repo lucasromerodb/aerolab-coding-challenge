@@ -1,14 +1,18 @@
 import React from "react";
 
-function Product({ _id, name, cost, category, img, onRequestRedeem }) {
+function Product({ _id, name, cost, category, img, posting, userPoints, onRequestRedeem }) {
   return (
     <section>
       <img src={img.url} alt={name} />
       <h1>{name}</h1>
       <small>{_id}</small>
-      <h2>$ {cost}</h2>
       <h3>{category}</h3>
-      <button onClick={() => onRequestRedeem(_id)}>Redeem</button>
+      {userPoints >= cost ? <h2>$ {cost}</h2> : <h2>You need: {cost - userPoints}</h2>}
+      {userPoints >= cost && (
+        <button onClick={() => onRequestRedeem(_id)} disabled={posting}>
+          REDEEM NOW
+        </button>
+      )}
     </section>
   );
 }

@@ -56,6 +56,7 @@ export const pointsCallFailure = ({ error }) => ({
 /* === SELECTORS === */
 
 export const selectUser = store => store.user;
+export const selectUserPoints = store => store.user.points;
 export const selectAmount = store => store.user.amount;
 export const selectPointsMsg = store => store.user.pointsMsg;
 

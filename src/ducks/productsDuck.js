@@ -65,6 +65,7 @@ export const sortProducts = direction => ({
 export const selectProducts = store => store.products.products;
 export const selectFetching = store => store.products.fetching;
 export const selectError = store => store.products.error;
+export const selectPosting = store => store.products.posting;
 export const selectRedeemId = store => store.products.redeemId;
 export const selectRedeemMsg = store => store.products.redeemMsg;
 export const selectSortBy = store => store.products.sortBy;

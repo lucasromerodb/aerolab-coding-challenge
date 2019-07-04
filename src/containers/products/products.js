@@ -7,17 +7,21 @@ import {
   sortProducts,
   selectFetching,
   selectProducts,
+  selectPosting,
   selectRedeemMsg,
   selectSortBy
 } from "../../ducks/productsDuck";
 
 import Product from "../../components/product";
+import { selectUserPoints } from "../../ducks/userDuck";
 
 function Products({
   fetching,
+  posting,
   products,
   redeemMsg,
   sortBy,
+  userPoints,
   onRequestProducts,
   onRequestRedeem,
   onSortProducts
@@ -40,7 +44,15 @@ function Products({
       <p>{redeemMsg}</p>
       <section>
         {products.length
-          ? products.map(p => <Product key={p._id} {...p} onRequestRedeem={onRequestRedeem} />)
+          ? products.map(p => (
+              <Product
+                key={p._id}
+                {...p}
+                posting={posting}
+                userPoints={userPoints}
+                onRequestRedeem={onRequestRedeem}
+              />
+            ))
           : ""}
       </section>
     </section>
@@ -49,9 +61,11 @@ function Products({
 
 const mapStateToProps = store => ({
   fetching: selectFetching(store),
+  posting: selectPosting(store),
   products: selectProducts(store),
   redeemMsg: selectRedeemMsg(store),
-  sortBy: selectSortBy(store)
+  sortBy: selectSortBy(store),
+  userPoints: selectUserPoints(store)
 });
 
 const mapDispatchToProps = dispatch => ({
