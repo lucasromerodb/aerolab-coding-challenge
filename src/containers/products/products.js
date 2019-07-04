@@ -2,50 +2,69 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import {
-  setProductsAction,
-  setRedeemMsgAction,
+  productsCallRequest,
+  // setProductsAction,
+  // setRedeemMsgAction,
+  selectFetching,
   selectProducts,
-  selectRedeemMsg
+  selectRedeemMsg,
+  selectError
 } from "../../ducks/productsDuck";
 
-import { getProducts, postRedeem } from "../../api";
-import { sortBy } from "../../utils";
+// import { getProducts, postRedeem } from "../../api";
+// import { sortBy } from "../../utils";
 
 import Product from "../../components/product";
 
-function Products({ products, setProducts, redeemMsg, setRedeemMsg }) {
-  function redeemProduct(id) {
-    postRedeem(setRedeemMsg, id);
-  }
+function Products({
+  fetching,
+  products,
+  redeemMsg,
+  error,
+  onRequestProducts
+  // setProducts,
+  // setRedeemMsg,
+  // productsCallRequest
+}) {
+  // function redeemProduct(id) {
+  //   postRedeem(setRedeemMsg, id);
+  // }
 
-  function sortProductsByPrice(first = "low") {
-    const sorted = sortBy(products, first);
-    setProducts(sorted);
-  }
+  // function sortProductsByPrice(first = "low") {
+  //   const sorted = sortBy(products, first);
+  //   setProducts(sorted);
+  // }
 
-  function sortProductsByRecent() {
-    const sorted = sortBy(products, "high", "_id");
-    setProducts(sorted);
-  }
+  // function sortProductsByRecent() {
+  //   const sorted = sortBy(products, "high", "_id");
+  //   setProducts(sorted);
+  // }
 
   useEffect(() => {
-    getProducts(setProducts);
-    const timer = setTimeout(() => {
-      setRedeemMsg("");
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [setProducts, redeemMsg, setRedeemMsg]);
+    onRequestProducts();
+    // getProducts(setProducts);
+    // const timer = setTimeout(() => {
+    //   setRedeemMsg("");
+    // }, 3000);
+    // return () => clearTimeout(timer);
+  }, [onRequestProducts]);
 
+  console.warn(products);
   return (
     <section>
       <h1>Products List</h1>
-      <button onClick={() => sortProductsByPrice("low")}>Price LOW to high</button>
-      <button onClick={() => sortProductsByPrice("high")}>Price HIGH to low</button>
-      <button onClick={() => sortProductsByRecent()}>Recent</button>
-      <p>{redeemMsg}</p>
+      {fetching ? (
+        <button disabled>Fetching products...</button>
+      ) : (
+        <button onClick={onRequestProducts}>REQUEST PRODUCTS</button>
+      )}
+      {/* <button onClick={() => sortProductsByPrice("low")}>Price LOW to high</button> */}
+      {/* <button onClick={() => sortProductsByPrice("high")}>Price HIGH to low</button> */}
+      {/* <button onClick={() => sortProductsByRecent()}>Recent</button> */}
+      {/* <p>{redeemMsg}</p> */}
       <section>
         {products.length
-          ? products.map(p => <Product key={p._id} {...p} redeemProduct={redeemProduct} />)
+          ? products.map(p => <Product key={p._id} {...p} /* redeemProduct={redeemProduct} */ />)
           : ""}
       </section>
     </section>
@@ -53,14 +72,17 @@ function Products({ products, setProducts, redeemMsg, setRedeemMsg }) {
 }
 
 const mapStateToProps = store => ({
+  fetching: selectFetching(store),
   products: selectProducts(store),
-  redeemMsg: selectRedeemMsg(store)
+  redeemMsg: selectRedeemMsg(store),
+  error: selectError(store)
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    setProducts: products => dispatch(setProductsAction(products)),
-    setRedeemMsg: msg => dispatch(setRedeemMsgAction(msg))
+    onRequestProducts: () => dispatch(productsCallRequest())
+    // setProducts: products => dispatch(setProductsAction(products)),
+    // setRedeemMsg: msg => dispatch(setRedeemMsgAction(msg))
   };
 }
 

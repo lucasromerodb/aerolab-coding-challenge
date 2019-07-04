@@ -15,21 +15,22 @@ function buildBody(params) {
 }
 
 /* === REQUEST === */
-async function fetchAPI(url, set, method = "GET", extra = {}) {
+async function fetchAPI(url, method = "GET", extra = {}) {
   const options = { method, headers: HEADERS, ...extra };
   return await fetch(`${BASE_URL}${url}`, options)
     .then(res => res.json())
-    .then(data => set(data))
+    // .then(data => set(data))
+    .then(data => data)
     .catch(err => err);
 }
 
 /* === GET === */
-const getProducts = set => fetchAPI("/products", set);
-const getUserMe = set => fetchAPI("/user/me", set);
-const getUserHistory = set => fetchAPI("/user/history", set);
+const getProducts = () => fetchAPI("/products");
+const getUserMe = () => fetchAPI("/user/me");
+const getUserHistory = () => fetchAPI("/user/history");
 
 /* === POST === */
-const postPoints = (set, amount) => fetchAPI("/user/points", set, "POST", buildBody({ amount }));
-const postRedeem = (set, productId) => fetchAPI("/redeem", set, "POST", buildBody({ productId }));
+const postPoints = amount => fetchAPI("/user/points", "POST", buildBody({ amount }));
+const postRedeem = productId => fetchAPI("/redeem", "POST", buildBody({ productId }));
 
 export { getProducts, getUserMe, getUserHistory, postPoints, postRedeem };
