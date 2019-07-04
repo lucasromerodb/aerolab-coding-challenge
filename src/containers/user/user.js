@@ -1,25 +1,27 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { getUserMe, postPoints } from "../../api";
-import { setUserAction, setPointsMsgAction, selectUser } from "../../ducks/userDuck";
+import { postPoints } from "../../api";
+import { userCallRequest, selectUser } from "../../ducks/userDuck";
+import { selectRedeemMsg } from "../../ducks/productsDuck";
 
 import Points from "../../components/points/";
 
-function User({ user, setUser, setPointsMsg }) {
+function User({ user, onUserCallRequest, redeemMsg }) {
   const { _id, name, points, pointsMsg } = user;
 
-  function addPoints(amount) {
-    postPoints(setPointsMsg, amount);
-  }
+  // function addPoints(amount) {
+  //   postPoints(setPointsMsg, amount);
+  // }
 
   useEffect(() => {
-    getUserMe(setUser);
-    const timer = setTimeout(() => {
-      setPointsMsg("");
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [pointsMsg, setPointsMsg, setUser]);
+    onUserCallRequest();
+    // const timer = setTimeout(() => {
+    //   setPointsMsg("");
+    // }, 3000);
+    // return () => clearTimeout(timer);
+  }, [onUserCallRequest, redeemMsg]);
+  console.warn("-- user --", user);
 
   return (
     <section>
@@ -27,22 +29,24 @@ function User({ user, setUser, setPointsMsg }) {
         {name} <Points points={points} />
       </h1>
       <h2>{_id}</h2>
-      <button onClick={() => addPoints(1000)}>Buy 1000 Points</button>
+      {/* <button onClick={() => addPoints(1000)}>Buy 1000 Points</button>
       <button onClick={() => addPoints(5000)}>Buy 5000 Points</button>
-      <button onClick={() => addPoints(7500)}>Buy 7500 Points</button>
+      <button onClick={() => addPoints(7500)}>Buy 7500 Points</button> */}
       <p>{pointsMsg}</p>
     </section>
   );
 }
 
 const mapStateToProps = store => ({
-  user: selectUser(store)
+  user: selectUser(store),
+  redeemMsg: selectRedeemMsg(store)
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    setUser: user => dispatch(setUserAction(user)),
-    setPointsMsg: msg => dispatch(setPointsMsgAction(msg))
+    onUserCallRequest: () => dispatch(userCallRequest())
+    // setUser: user => dispatch(setUserAction(user)),
+    // setPointsMsg: msg => dispatch(setPointsMsgAction(msg))
   };
 }
 
