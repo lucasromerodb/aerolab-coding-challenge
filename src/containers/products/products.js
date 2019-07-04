@@ -4,29 +4,31 @@ import { connect } from "react-redux";
 import {
   productsCallRequest,
   redeemCallRequest,
+  sortProducts,
   selectFetching,
   selectProducts,
-  selectRedeemMsg
+  selectPosting,
+  selectRedeemMsg,
+  selectSortBy
 } from "../../ducks/productsDuck";
 
-// import { sortBy } from "../../utils";
-
 import Product from "../../components/product";
+import { selectUserPoints } from "../../ducks/userDuck";
 
-function Products({ fetching, products, redeemMsg, onRequestProducts, onRequestRedeem }) {
-  // function sortProductsByPrice(first = "low") {
-  //   const sorted = sortBy(products, first);
-  //   setProducts(sorted);
-  // }
-
-  // function sortProductsByRecent() {
-  //   const sorted = sortBy(products, "high", "_id");
-  //   setProducts(sorted);
-  // }
-
+function Products({
+  fetching,
+  posting,
+  products,
+  redeemMsg,
+  sortBy,
+  userPoints,
+  onRequestProducts,
+  onRequestRedeem,
+  onSortProducts
+}) {
   useEffect(() => {
     onRequestProducts();
-  }, [onRequestProducts]);
+  }, [sortBy, onRequestProducts]);
 
   return (
     <section>
@@ -36,13 +38,21 @@ function Products({ fetching, products, redeemMsg, onRequestProducts, onRequestR
       ) : (
         <button onClick={onRequestProducts}>REQUEST PRODUCTS</button>
       )}
-      {/* <button onClick={() => sortProductsByPrice("low")}>Price LOW to high</button> */}
-      {/* <button onClick={() => sortProductsByPrice("high")}>Price HIGH to low</button> */}
-      {/* <button onClick={() => sortProductsByRecent()}>Recent</button> */}
+      <button onClick={() => onSortProducts("asc")}>Price LOW to high</button>
+      <button onClick={() => onSortProducts("desc")}>Price HIGH to low</button>
+      <button onClick={() => onSortProducts(null)}>Recent</button>
       <p>{redeemMsg}</p>
       <section>
         {products.length
-          ? products.map(p => <Product key={p._id} {...p} onRequestRedeem={onRequestRedeem} />)
+          ? products.map(p => (
+              <Product
+                key={p._id}
+                {...p}
+                posting={posting}
+                userPoints={userPoints}
+                onRequestRedeem={onRequestRedeem}
+              />
+            ))
           : ""}
       </section>
     </section>
@@ -51,13 +61,17 @@ function Products({ fetching, products, redeemMsg, onRequestProducts, onRequestR
 
 const mapStateToProps = store => ({
   fetching: selectFetching(store),
+  posting: selectPosting(store),
   products: selectProducts(store),
-  redeemMsg: selectRedeemMsg(store)
+  redeemMsg: selectRedeemMsg(store),
+  sortBy: selectSortBy(store),
+  userPoints: selectUserPoints(store)
 });
 
 const mapDispatchToProps = dispatch => ({
   onRequestProducts: () => dispatch(productsCallRequest()),
-  onRequestRedeem: productId => dispatch(redeemCallRequest(productId))
+  onRequestRedeem: productId => dispatch(redeemCallRequest(productId)),
+  onSortProducts: direction => dispatch(sortProducts(direction))
 });
 
 export default connect(
