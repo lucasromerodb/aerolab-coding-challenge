@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 
-import { watcherProducts, watcherUser, watcherRedeem } from "../sagas";
+import { watcherProducts, watcherUser, watcherRedeem, watcherPoints } from "../sagas";
 
 import products from "./productsDuck";
 import user from "./userDuck";
@@ -22,5 +22,6 @@ const store = createStore(
 sagaMiddleware.run(watcherProducts);
 sagaMiddleware.run(watcherUser);
 sagaMiddleware.run(watcherRedeem);
+sagaMiddleware.run(watcherPoints);
 
 export default store;

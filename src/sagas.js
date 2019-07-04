@@ -1,5 +1,5 @@
 import { takeLatest, call, put, select } from "redux-saga/effects";
-import { getProducts, getUserMe, postRedeem } from "./api";
+import { getProducts, getUserMe, postRedeem, postPoints } from "./api";
 import {
   types as productTypes,
   productsCallSuccess,
@@ -8,10 +8,18 @@ import {
   redeemCallFailure,
   selectRedeemId
 } from "./ducks/productsDuck";
-import { types as userTypes, userCallSuccess, userCallFailure } from "./ducks/userDuck";
+import {
+  types as userTypes,
+  userCallSuccess,
+  userCallFailure,
+  pointsCallSuccess,
+  pointsCallFailure,
+  selectAmount
+} from "./ducks/userDuck";
 
 /* === GET === */
 
+// products
 function* productsSaga() {
   try {
     const products = yield call(getProducts);
@@ -25,6 +33,7 @@ function* watcherProducts() {
   yield takeLatest(productTypes.PRODUCTS_CALL_REQUEST, productsSaga);
 }
 
+// user
 function* userSaga() {
   try {
     const user = yield call(getUserMe);
@@ -40,6 +49,7 @@ function* watcherUser() {
 
 /* === POST === */
 
+// products
 function* redeemSaga() {
   try {
     const productId = yield select(selectRedeemId);
@@ -54,4 +64,19 @@ function* watcherRedeem() {
   yield takeLatest(productTypes.REDEEM_CALL_REQUEST, redeemSaga);
 }
 
-export { watcherProducts, watcherUser, watcherRedeem };
+// user
+function* pointsSaga() {
+  try {
+    const amount = yield select(selectAmount);
+    const message = yield call(postPoints, amount);
+    yield put(pointsCallSuccess(message));
+  } catch (error) {
+    yield put(pointsCallFailure(error));
+  }
+}
+
+function* watcherPoints() {
+  yield takeLatest(userTypes.POINTS_CALL_REQUEST, pointsSaga);
+}
+
+export { watcherProducts, watcherUser, watcherRedeem, watcherPoints };

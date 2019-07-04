@@ -6,15 +6,14 @@ import {
   redeemCallRequest,
   selectFetching,
   selectProducts,
-  selectRedeemMsg,
-  selectError
+  selectRedeemMsg
 } from "../../ducks/productsDuck";
 
 // import { sortBy } from "../../utils";
 
 import Product from "../../components/product";
 
-function Products({ fetching, products, redeemMsg, error, onRequestProducts, onRequestRedeem }) {
+function Products({ fetching, products, redeemMsg, onRequestProducts, onRequestRedeem }) {
   // function sortProductsByPrice(first = "low") {
   //   const sorted = sortBy(products, first);
   //   setProducts(sorted);
@@ -27,18 +26,12 @@ function Products({ fetching, products, redeemMsg, error, onRequestProducts, onR
 
   useEffect(() => {
     onRequestProducts();
-    // getProducts(setProducts);
-    // const timer = setTimeout(() => {
-    //   setRedeemMsg("");
-    // }, 3000);
-    // return () => clearTimeout(timer);
   }, [onRequestProducts]);
 
   console.warn(products);
   return (
     <section>
       <h1>Products List</h1>
-      {<span>{error}</span>}
       {fetching ? (
         <button disabled>Fetching products...</button>
       ) : (
@@ -60,8 +53,7 @@ function Products({ fetching, products, redeemMsg, error, onRequestProducts, onR
 const mapStateToProps = store => ({
   fetching: selectFetching(store),
   products: selectProducts(store),
-  redeemMsg: selectRedeemMsg(store),
-  error: selectError(store)
+  redeemMsg: selectRedeemMsg(store)
 });
 
 function mapDispatchToProps(dispatch) {
