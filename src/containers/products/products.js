@@ -3,33 +3,18 @@ import { connect } from "react-redux";
 
 import {
   productsCallRequest,
-  // setProductsAction,
-  // setRedeemMsgAction,
+  redeemCallRequest,
   selectFetching,
   selectProducts,
   selectRedeemMsg,
   selectError
 } from "../../ducks/productsDuck";
 
-// import { getProducts, postRedeem } from "../../api";
 // import { sortBy } from "../../utils";
 
 import Product from "../../components/product";
 
-function Products({
-  fetching,
-  products,
-  redeemMsg,
-  error,
-  onRequestProducts
-  // setProducts,
-  // setRedeemMsg,
-  // productsCallRequest
-}) {
-  // function redeemProduct(id) {
-  //   postRedeem(setRedeemMsg, id);
-  // }
-
+function Products({ fetching, products, redeemMsg, error, onRequestProducts, onRequestRedeem }) {
   // function sortProductsByPrice(first = "low") {
   //   const sorted = sortBy(products, first);
   //   setProducts(sorted);
@@ -53,6 +38,7 @@ function Products({
   return (
     <section>
       <h1>Products List</h1>
+      {<span>{error}</span>}
       {fetching ? (
         <button disabled>Fetching products...</button>
       ) : (
@@ -64,7 +50,7 @@ function Products({
       {/* <p>{redeemMsg}</p> */}
       <section>
         {products.length
-          ? products.map(p => <Product key={p._id} {...p} /* redeemProduct={redeemProduct} */ />)
+          ? products.map(p => <Product key={p._id} {...p} onRequestRedeem={onRequestRedeem} />)
           : ""}
       </section>
     </section>
@@ -80,9 +66,8 @@ const mapStateToProps = store => ({
 
 function mapDispatchToProps(dispatch) {
   return {
-    onRequestProducts: () => dispatch(productsCallRequest())
-    // setProducts: products => dispatch(setProductsAction(products)),
-    // setRedeemMsg: msg => dispatch(setRedeemMsgAction(msg))
+    onRequestProducts: () => dispatch(productsCallRequest()),
+    onRequestRedeem: productId => dispatch(redeemCallRequest(productId))
   };
 }
 
