@@ -29,11 +29,8 @@ import { types as historyTypes, historyCallSuccess, historyCallFailure } from ".
 function* productsSaga() {
   try {
     const sortBy = yield select(selectSortBy);
-    console.warn(sortBy);
     const products = yield call(getProducts);
-    console.warn(products);
     const sorted = sortBy !== null ? sortArrBy(products, sortBy) : products;
-    console.warn(sorted);
     yield put(productsCallSuccess(sorted));
   } catch (error) {
     yield put(productsCallFailure(error));
