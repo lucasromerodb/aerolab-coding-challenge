@@ -1,0 +1,54 @@
+@import "../../styles/variables.scss";
+@import "../../styles/utils.scss";
+
+.Product {
+  width: 280px;
+
+  @extend %bbx;
+  border-radius: $radius;
+
+  background-color: $color-white;
+
+  margin-bottom: 20px;
+  transition: 0.4s ease 0s;
+
+  &:hover {
+    box-shadow: 0 15px 15px -10px $color-base-alt;
+  }
+
+  &__picture img {
+    width: 100%;
+    max-width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: $radius;
+  }
+
+  &__details {
+    padding: 20px;
+    padding-top: 20px;
+
+    border-top: 1px solid transparentize($color: $color-base-alt, $amount: 0.7);
+  }
+
+  &__category {
+    display: block;
+    margin-top: 10px;
+
+    color: $color-base-alt;
+  }
+
+  &__name {
+    margin: 0;
+    margin-top: 10px;
+
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: $color-black;
+  }
+
+  .btn {
+    margin-top: 20px;
+  }
+}
