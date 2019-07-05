@@ -3,22 +3,38 @@ import coin from "../../assets/coin.svg";
 import "../../styles/buttons.scss";
 import "./Product.scss";
 
-function Product({ _id, name, cost, category, img, posting, userPoints, onRequestRedeem }) {
+function Product({
+  _id,
+  name,
+  cost,
+  category,
+  img,
+  posting,
+  userPoints,
+  redeemId,
+  onRequestRedeem
+}) {
   return (
     <section className="Product">
       <div className="Product__picture">
         <img src={img.url} alt={name} />
       </div>
       <div className="Product__details">
-        <span className="Product__category">{category}</span>
-        <h1 className="Product__name">{name}</h1>
+        <span className="Product__category" title={category}>
+          {category}
+        </span>
+        <h1 className="Product__name" title={name}>
+          {name}
+        </h1>
         {userPoints >= cost ? (
           <button
-            className="btn btn--sm btn--primary"
+            className={`btn btn--sm btn--primary ${posting && redeemId === _id && "posting"}`}
             onClick={() => onRequestRedeem(_id)}
             disabled={posting}
           >
-            <span className="btn__text">Redeem now</span>
+            <span className="btn__text">
+              {posting && redeemId === _id ? "Processing..." : "Redeem now"}
+            </span>
             <div className="btn__cost">
               <strong className="btn__cost_number">{cost}</strong>
               <img src={coin} className="btn__cost_coin" alt="Coin icon" />

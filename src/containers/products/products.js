@@ -9,17 +9,20 @@ import {
   selectProducts,
   selectPosting,
   selectRedeemMsg,
-  selectSortBy
+  selectSortBy,
+  selectRedeemId
 } from "../../ducks/productsDuck";
 import Product from "../../components/product";
 import { selectUserPoints } from "../../ducks/userDuck";
 
 import { sliceArr, pageNumbers } from "../../utils";
+import "./Products.scss";
 
 function Products({
   fetching,
   posting,
   products,
+  redeemId,
   redeemMsg,
   sortBy,
   userPoints,
@@ -29,7 +32,7 @@ function Products({
 }) {
   const [prods, setProds] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(8);
+  const [productsPerPage] = useState(16);
   const pages = pageNumbers(products, productsPerPage);
 
   useEffect(() => {
@@ -67,7 +70,7 @@ function Products({
       <button onClick={() => onSortProducts("desc")}>Highest price</button>
       <button onClick={() => onSortProducts(null)}>Most recent</button>
       <p>{redeemMsg}</p>
-      <section>
+      <section className="Products_list">
         {prods.length
           ? prods.map(p => (
               <Product
@@ -76,6 +79,7 @@ function Products({
                 posting={posting}
                 userPoints={userPoints}
                 onRequestRedeem={onRequestRedeem}
+                redeemId={redeemId}
               />
             ))
           : ""}
@@ -88,6 +92,7 @@ const mapStateToProps = store => ({
   fetching: selectFetching(store),
   posting: selectPosting(store),
   products: selectProducts(store),
+  redeemId: selectRedeemId(store),
   redeemMsg: selectRedeemMsg(store),
   sortBy: selectSortBy(store),
   userPoints: selectUserPoints(store)

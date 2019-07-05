@@ -22,7 +22,7 @@
   transition: 0.4s ease 0s;
 
   &--sm {
-    padding: 0.9rem;
+    padding: 0.6rem 0.9rem;
     border-radius: $radius-sm;
     font-size: 0.9rem;
   }
@@ -30,8 +30,9 @@
   &--primary {
     background-color: $color-accent;
 
-    &:disabled {
-      opacity: 0.5;
+    &.posting {
+      opacity: 0.4;
+      cursor: progress;
     }
 
     &:hover {
@@ -46,6 +47,7 @@
 
   &--disabled {
     background-color: $color-base-alt;
+    cursor: not-allowed;
   }
 
   &__cost {
