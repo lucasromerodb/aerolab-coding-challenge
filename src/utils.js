@@ -9,4 +9,16 @@ function sortArrBy(arr, direction = "asc", prop = "cost") {
   });
 }
 
-export { PROJECT_NAME, sortArrBy };
+function sliceArr(arr, currentPage, qtyPerPage = 3) {
+  const last = currentPage * qtyPerPage;
+  const first = last - qtyPerPage;
+  const currentProducts = arr.slice(first, last);
+  return currentProducts;
+}
+
+function pageNumbers(arr, qtyPerPage) {
+  const pages = Math.ceil(arr.length / qtyPerPage);
+  return Array.from(Array(pages).keys());
+}
+
+export { PROJECT_NAME, sortArrBy, sliceArr, pageNumbers };
