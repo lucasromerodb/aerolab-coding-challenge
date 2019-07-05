@@ -1,2 +1,2 @@
-import Points from "./points";
+import Points from "./Points";
 export default Points;

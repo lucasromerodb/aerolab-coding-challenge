@@ -1,2 +1,2 @@
-import History from "./history";
+import History from "./History";
 export default History;
