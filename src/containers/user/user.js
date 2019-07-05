@@ -9,7 +9,7 @@ import {
 } from "../../ducks/userDuck";
 import { selectRedeemMsg } from "../../ducks/productsDuck";
 
-import Points from "../../components/points/";
+import Points from "../../components/points";
 
 function User({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
   const { _id, name, points } = user;
