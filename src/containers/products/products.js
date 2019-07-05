@@ -14,7 +14,7 @@ import {
 import Product from "../../components/product";
 import { selectUserPoints } from "../../ducks/userDuck";
 
-import { sliceArr } from "../../utils";
+import { sliceArr, pageNumbers } from "../../utils";
 
 function Products({
   fetching,
@@ -28,46 +28,44 @@ function Products({
   onSortProducts
 }) {
   const [prods, setProds] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(8);
-
-  function onSelectPage(page) {
-    // const page = e.target.id;
-    const sliced = sliceArr(products, page, productsPerPage);
-    console.warn("-sliced-", sliced.map(i => i.name));
-    setProds(sliced);
-  }
+  const pages = pageNumbers(products, productsPerPage);
 
   useEffect(() => {
     onRequestProducts();
   }, [sortBy, onRequestProducts]);
 
   useEffect(() => {
-    const sliced = sliceArr(products, 1, productsPerPage);
+    const sliced = sliceArr(products, currentPage, productsPerPage);
     setProds(sliced);
-  }, [products, productsPerPage]);
-
-  useEffect(() => {});
-
-  console.warn("- PRODS -", prods);
+  }, [products, currentPage, productsPerPage]);
 
   return (
     <section>
       <h1>Products List</h1>
-      {Array.from(Array(Math.ceil(products.length / productsPerPage)).keys()).map(i => (
-        <button key={"page_" + i + 1} onClick={() => onSelectPage(i + 1)}>
-          {i + 1}
-        </button>
-      ))}
-      {/* <button onClick={() => setCurrentPage(currentPage - 1)}>«</button> */}
-      {/* <button onClick={() => setCurrentPage(currentPage + 1)}>»</button> */}
+
+      {pages.length > 1 &&
+        pages.map(i => {
+          const page = i + 1;
+          return (
+            <button
+              key={`page_${page}`}
+              disabled={page === currentPage}
+              onClick={() => setCurrentPage(page)}
+            >
+              {page}
+            </button>
+          );
+        })}
       {fetching ? (
         <button disabled>Fetching products...</button>
       ) : (
         <button onClick={onRequestProducts}>REQUEST PRODUCTS</button>
       )}
-      <button onClick={() => onSortProducts("asc")}>Price LOW to high</button>
-      <button onClick={() => onSortProducts("desc")}>Price HIGH to low</button>
-      <button onClick={() => onSortProducts(null)}>Recent</button>
+      <button onClick={() => onSortProducts("asc")}>Lowest price</button>
+      <button onClick={() => onSortProducts("desc")}>Highest price</button>
+      <button onClick={() => onSortProducts(null)}>Most recent</button>
       <p>{redeemMsg}</p>
       <section>
         {prods.length

@@ -17,11 +17,8 @@ function sliceArr(arr, currentPage, qtyPerPage = 3) {
 }
 
 function pageNumbers(arr, qtyPerPage) {
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(arr.length / qtyPerPage); i++) {
-    pageNumbers.push(i);
-  }
-  return pageNumbers;
+  const pages = Math.ceil(arr.length / qtyPerPage);
+  return Array.from(Array(pages).keys());
 }
 
 export { PROJECT_NAME, sortArrBy, sliceArr, pageNumbers };
