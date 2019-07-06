@@ -5,8 +5,8 @@ import coin from "../../assets/coin.svg";
 function Points({ points }) {
   return (
     !!points && (
-      <PointsButton small>
-        <Notification />
+      <PointsButton>
+        <Notification points={points} />
         <UserPoints>
           {points}
           <img src={coin} alt="Coin icon" srcset="" className="icon" />
