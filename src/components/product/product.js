@@ -1,8 +1,15 @@
 import React from "react";
+
 import coin from "../../assets/coin.svg";
-// import "../../styles/buttons.scss";
-import { ButtonRedeem } from "../../styles/Button.js";
-import "./Product.scss";
+import { RedeemButton } from "../../styles/Button.js";
+import {
+  ProductBox,
+  ProductPicture,
+  ProductInfo,
+  ProductTitle,
+  ProductCategory,
+  ProductRdeemed
+} from "./Styles";
 
 function Product({
   _id,
@@ -13,23 +20,23 @@ function Product({
   posting,
   userPoints,
   redeemId,
+  redeemedTimes,
   onRequestRedeem
 }) {
   return (
-    <section className="Product">
-      <div className="Product__picture">
+    <ProductBox className="Product">
+      <ProductPicture>
         <img src={img.url} alt={name} />
-      </div>
-      <div className="Product__details">
-        <span className="Product__category" title={category}>
-          {category}
-        </span>
-        <h1 className="Product__name" title={name}>
-          {name}
-        </h1>
+      </ProductPicture>
+      <ProductInfo className="Product__details">
+        <ProductCategory title={category}>{category}</ProductCategory>
+        <ProductTitle title={name}>{name}</ProductTitle>
+        <ProductRdeemed>
+          {redeemedTimes > 0 ? `Rdeemed ${redeemedTimes} times` : `Never redeemed`}
+        </ProductRdeemed>
 
         {userPoints >= cost ? (
-          <ButtonRedeem
+          <RedeemButton
             primary
             small
             disabled={false}
@@ -41,18 +48,18 @@ function Product({
               <strong className="cost">{cost}</strong>
               <img src={coin} alt="Coin icon" className="icon" />
             </div>
-          </ButtonRedeem>
+          </RedeemButton>
         ) : (
-          <ButtonRedeem small disabled={true}>
+          <RedeemButton small disabled={true}>
             <div>You need</div>
             <div className="price">
               <strong className="cost">{cost - userPoints}</strong>
               <img src={coin} alt="Coin icon" className="icon" />
             </div>
-          </ButtonRedeem>
+          </RedeemButton>
         )}
-      </div>
-    </section>
+      </ProductInfo>
+    </ProductBox>
   );
 }
 

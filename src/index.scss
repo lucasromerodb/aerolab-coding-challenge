@@ -3,10 +3,10 @@
 
 html,
 body {
-  background-color: $color-base;
+  background-color: #eee;
 }
 
 body {
   margin: 0;
-  @extend %typography;
+  font-family: "Montserrat", sans-serif;
 }

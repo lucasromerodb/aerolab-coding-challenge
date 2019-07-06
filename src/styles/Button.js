@@ -61,7 +61,7 @@ export const Button = styled.button`
     `}
 `;
 
-export const ButtonRedeem = styled(Button)`
+export const RedeemButton = styled(Button)`
   ${({ primary }) =>
     primary &&
     css`

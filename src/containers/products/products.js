@@ -13,10 +13,11 @@ import {
   selectRedeemId
 } from "../../ducks/productsDuck";
 import Product from "../../components/product";
-import { selectUserPoints } from "../../ducks/userDuck";
+import { selectUserPoints, selectUserRedeemHistory } from "../../ducks/userDuck";
 
 import { sliceArr, pageNumbers } from "../../utils";
-import "./Products.scss";
+import { ProductsList } from "./Styles";
+// import "./Products.scss";
 
 function Products({
   fetching,
@@ -26,6 +27,7 @@ function Products({
   redeemMsg,
   sortBy,
   userPoints,
+  userHistory,
   onRequestProducts,
   onRequestRedeem,
   onSortProducts
@@ -70,20 +72,24 @@ function Products({
       <button onClick={() => onSortProducts("desc")}>Highest price</button>
       <button onClick={() => onSortProducts(null)}>Most recent</button>
       <p>{redeemMsg}</p>
-      <section className="Products_list">
+      <ProductsList className="Products_list">
         {prods.length
-          ? prods.map(p => (
-              <Product
-                key={p._id}
-                {...p}
-                posting={posting}
-                userPoints={userPoints}
-                onRequestRedeem={onRequestRedeem}
-                redeemId={redeemId}
-              />
-            ))
+          ? prods.map(p => {
+              const redeemedTimes = userHistory.filter(r => r.productId === p._id).length;
+              return (
+                <Product
+                  key={p._id}
+                  {...p}
+                  posting={posting}
+                  userPoints={userPoints}
+                  onRequestRedeem={onRequestRedeem}
+                  redeemId={redeemId}
+                  redeemedTimes={redeemedTimes}
+                />
+              );
+            })
           : ""}
-      </section>
+      </ProductsList>
     </section>
   );
 }
@@ -95,7 +101,8 @@ const mapStateToProps = store => ({
   redeemId: selectRedeemId(store),
   redeemMsg: selectRedeemMsg(store),
   sortBy: selectSortBy(store),
-  userPoints: selectUserPoints(store)
+  userPoints: selectUserPoints(store),
+  userHistory: selectUserRedeemHistory(store)
 });
 
 const mapDispatchToProps = dispatch => ({
