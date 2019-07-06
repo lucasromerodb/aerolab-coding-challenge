@@ -6,11 +6,13 @@ function User({ name }) {
   return (
     <UserWrapper>
       {name && (
-        <Logo name={name}>
-          <img src={logoSrc} alt={name} />
-        </Logo>
+        <>
+          <Logo name={name}>
+            <img src={logoSrc} alt={name} />
+          </Logo>
+          <UserName>Hi, {name}</UserName>
+        </>
       )}
-      {name && <UserName>Hi, {name}</UserName>}
     </UserWrapper>
   );
 }

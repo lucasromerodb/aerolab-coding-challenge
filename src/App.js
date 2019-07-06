@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Products from "./containers/products/";
 import User from "./containers/navigation";
@@ -12,8 +12,6 @@ function App() {
     <Router>
       <WrapperGap gap={20}>
         <User />
-        <Link to="/">Home</Link>
-        <Link to="/history">Redeem History</Link>
         <Route path="/" exact component={Products} />
         <Route path="/history" component={History} />
       </WrapperGap>

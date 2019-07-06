@@ -32,7 +32,11 @@ function Product({
         <ProductCategory title={category}>{category}</ProductCategory>
         <ProductTitle title={name}>{name}</ProductTitle>
         <ProductRdeemed times={redeemedTimes}>
-          {redeemedTimes > 0 ? `Rdeemed ${redeemedTimes} times` : `Never redeemed`}
+          {redeemedTimes > 0
+            ? redeemedTimes > 1
+              ? `Rdeemed ${redeemedTimes} times`
+              : `You already have this item`
+            : `Never redeemed`}
         </ProductRdeemed>
 
         {userPoints >= cost ? (
