@@ -67,7 +67,7 @@ const initialState = {
   fetching: false,
   error: null,
   _id: null,
-  name: "Kite",
+  name: "",
   points: 0,
   redeemHistory: [],
   createDate: "Big Bang",

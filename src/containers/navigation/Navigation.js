@@ -9,9 +9,12 @@ import {
 } from "../../ducks/userDuck";
 import { selectRedeemMsg } from "../../ducks/productsDuck";
 
+import User from "../../components/user";
 import Points from "../../components/points";
 
-function User({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
+import { Header } from "./Styles";
+
+function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
   const { _id, name, points } = user;
 
   useEffect(() => {
@@ -19,16 +22,15 @@ function User({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
   }, [pointsMsg, redeemMsg, onGetUser]);
 
   return (
-    <section>
-      <h1>
-        {name} <Points points={points} />
-      </h1>
+    <Header>
+      <User name={name} />
+      <Points points={points} />
       <h2>{_id}</h2>
       <button onClick={() => onAddPoints(1000)}>Buy 1000 Points</button>
       <button onClick={() => onAddPoints(5000)}>Buy 5000 Points</button>
       <button onClick={() => onAddPoints(7500)}>Buy 7500 Points</button>
       <p>{pointsMsg}</p>
-    </section>
+    </Header>
   );
 }
 
@@ -46,4 +48,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(User);
+)(Navigation);
