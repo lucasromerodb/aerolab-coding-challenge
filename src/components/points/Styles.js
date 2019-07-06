@@ -18,7 +18,7 @@ export const BuyMore = styled.span`
 export const Notification = styled.span`
   visibility: hidden;
   ${({ points }) =>
-    points < 500 &&
+    points < 250 &&
     css`
       visibility: visible;
     `}

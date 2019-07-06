@@ -2,57 +2,57 @@ import styled, { css, keyframes } from "styled-components";
 import { transparentize } from "polished";
 
 import { Vars, Device } from "../../styles/Variables";
-import { Button } from "../../styles/Button";
+import { Button, RedeemButton } from "../../styles/Button";
 
 const productGap = "20px";
 
-const bouncingButton = keyframes`
-  90% { transform: scale(1) }
-  95% { transform: scale(0.95) }
-  100% { transform: scale(1) }
-`;
+// const bouncingButton = keyframes`
+//   90% { transform: scale(1) }
+//   95% { transform: scale(0.95) }
+//   100% { transform: scale(1) }
+// `;
 
-const bouncingIcon = keyframes`
-  0% { transform: scale(1) }
-  80% { transform: scale(0.75) }
-  95% { transform: scale(1.1) }
-`;
+// const bouncingIcon = keyframes`
+//   0% { transform: scale(1) }
+//   80% { transform: scale(0.75) }
+//   95% { transform: scale(1.1) }
+// `;
 
-export const RedeemButton = styled(Button)`
-  ${({ primary }) =>
-    primary &&
-    css`
-      :hover {
-        box-shadow: 0 15px 15px -10px ${transparentize(0.75, Vars.color.primary)};
-        animation: ${bouncingButton} 3s ease-in infinite;
+// export const RedeemButton = styled(Button)`
+//   ${({ primary }) =>
+//     primary &&
+//     css`
+//       :hover {
+//         box-shadow: 0 15px 15px -10px ${transparentize(0.75, Vars.color.primary)};
+//         animation: ${bouncingButton} 3s ease-in infinite;
 
-        .icon {
-          animation: ${bouncingIcon} 1.2s ease-in infinite;
-        }
-      }
-    `}
-  ${({ posting }) =>
-    posting &&
-    css`
-      opacity: 0.4;
-      cursor: progress;
-    `}
-    .price {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-  }
+//         .icon {
+//           animation: ${bouncingIcon} 1.2s ease-in infinite;
+//         }
+//       }
+//     `}
+//   ${({ posting }) =>
+//     posting &&
+//     css`
+//       opacity: 0.4;
+//       cursor: progress;
+//     `}
+//     .price {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: flex-end;
+//     align-items: center;
+//   }
 
-  .cost {
-    font-size: 1.2rem;
-  }
+//   .cost {
+//     font-size: 1.2rem;
+//   }
 
-  .icon {
-    width: 25px;
-    margin-left: 10px;
-  }
-`;
+//   .icon {
+//     width: 25px;
+//     margin-left: 10px;
+//   }
+// `;
 
 export const ProductPicture = styled.div`
   display: flex;

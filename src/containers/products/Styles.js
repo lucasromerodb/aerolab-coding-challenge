@@ -1,5 +1,18 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Device } from "../../styles/Variables";
+
+const fadeInList = keyframes`
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+`;
+
+export const List = styled.div`
+  opacity: 0;
+  transform: translateY(10px);
+  animation: ${fadeInList} 0.5s ease 0.2s forwards;
+`;
 
 export const ProductsList = styled.section`
   display: grid;
