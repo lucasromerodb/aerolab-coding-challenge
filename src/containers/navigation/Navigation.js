@@ -27,17 +27,20 @@ function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
       <Link to="/">
         <User name={name} />
       </Link>
-      <a
-        href="https://github.com/lucasromerodb/aerolab-coding-challenge"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GitHub »
-      </a>
-      <Link to="/">Products</Link>
-      <Link to="/history">Redeem History</Link>
-      <nav>hola</nav>
-      {/* <Points points={points} /> */}
+      <div>
+        <nav>
+          <a
+            href="https://github.com/lucasromerodb/aerolab-coding-challenge"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub »
+          </a>
+          <Link to="/">Products</Link>
+          <Link to="/history">Redeem History</Link>
+          <Points points={points} />
+        </nav>
+      </div>
       {/* <h2>{_id}</h2> */}
       {/* <button onClick={() => onAddPoints(1000)}>Buy 1000 Points</button>
       <button onClick={() => onAddPoints(5000)}>Buy 5000 Points</button>

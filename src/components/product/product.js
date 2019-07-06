@@ -1,14 +1,14 @@
 import React from "react";
 
 import coin from "../../assets/coin.svg";
-import { RedeemButton } from "../../styles/Button.js";
 import {
   ProductBox,
   ProductPicture,
   ProductInfo,
   ProductTitle,
   ProductCategory,
-  ProductRdeemed
+  ProductRdeemed,
+  RedeemButton
 } from "./Styles";
 
 function Product({

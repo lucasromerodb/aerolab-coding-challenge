@@ -5,16 +5,16 @@ import Products from "./containers/products/";
 import User from "./containers/navigation";
 import History from "./containers/history/";
 
-import { WrapperGap } from "./styles/Mixins";
+import { Wrapper } from "./styles/Mixins";
 
 function App() {
   return (
     <Router>
-      <WrapperGap gap={20}>
+      <Wrapper>
         <User />
         <Route path="/" exact component={Products} />
         <Route path="/history" component={History} />
-      </WrapperGap>
+      </Wrapper>
     </Router>
   );
 }
