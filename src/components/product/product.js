@@ -1,6 +1,7 @@
 import React from "react";
 import coin from "../../assets/coin.svg";
-import "../../styles/buttons.scss";
+// import "../../styles/buttons.scss";
+import { ButtonRedeem } from "../../styles/Button.js";
 import "./Product.scss";
 
 function Product({
@@ -26,28 +27,29 @@ function Product({
         <h1 className="Product__name" title={name}>
           {name}
         </h1>
+
         {userPoints >= cost ? (
-          <button
-            className={`btn btn--sm btn--primary ${posting && redeemId === _id && "posting"}`}
+          <ButtonRedeem
+            primary
+            small
+            disabled={false}
+            posting={posting && redeemId === _id}
             onClick={() => onRequestRedeem(_id)}
-            disabled={posting}
           >
-            <span className="btn__text">
-              {posting && redeemId === _id ? "Processing..." : "Redeem now"}
-            </span>
-            <div className="btn__cost">
-              <strong className="btn__cost_number">{cost}</strong>
-              <img src={coin} className="btn__cost_coin" alt="Coin icon" />
+            <div>{posting && redeemId === _id ? "Processing..." : "Redeem now"}</div>
+            <div className="price">
+              <strong className="cost">{cost}</strong>
+              <img src={coin} alt="Coin icon" className="icon" />
             </div>
-          </button>
+          </ButtonRedeem>
         ) : (
-          <button className="btn btn--sm btn--disabled" disabled={true}>
-            <span className="btn__text">You need</span>
-            <div className="btn__cost">
-              <strong className="btn__cost_number">{cost - userPoints}</strong>
-              <img src={coin} className="btn__cost_coin" alt="Coin icon" />
+          <ButtonRedeem small disabled={true}>
+            <div>You need</div>
+            <div className="price">
+              <strong className="cost">{cost - userPoints}</strong>
+              <img src={coin} alt="Coin icon" className="icon" />
             </div>
-          </button>
+          </ButtonRedeem>
         )}
       </div>
     </section>
