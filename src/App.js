@@ -5,18 +5,18 @@ import Products from "./containers/products/";
 import User from "./containers/user/";
 import History from "./containers/history/";
 
-import "./App.scss";
+import { WrapperGap } from "./styles/Mixins";
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <WrapperGap gap={20}>
         <User />
         <Link to="/">Home</Link>
         <Link to="/history">Redeem History</Link>
         <Route path="/" exact component={Products} />
         <Route path="/history" component={History} />
-      </div>
+      </WrapperGap>
     </Router>
   );
 }

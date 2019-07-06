@@ -31,7 +31,7 @@ function Product({
       <ProductInfo className="Product__details">
         <ProductCategory title={category}>{category}</ProductCategory>
         <ProductTitle title={name}>{name}</ProductTitle>
-        <ProductRdeemed>
+        <ProductRdeemed times={redeemedTimes}>
           {redeemedTimes > 0 ? `Rdeemed ${redeemedTimes} times` : `Never redeemed`}
         </ProductRdeemed>
 
