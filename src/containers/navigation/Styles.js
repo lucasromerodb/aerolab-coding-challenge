@@ -23,6 +23,12 @@ export const Nav = styled.nav`
 
     font-size: 1.1rem;
     color: ${Vars.color.black};
+
+    transition: color 0.2 ease;
+
+    :hover {
+      color: ${Vars.color.primary};
+    }
   }
 `;
 

@@ -11,7 +11,7 @@ const fadeInList = keyframes`
 export const List = styled.div`
   opacity: 0;
   transform: translateY(10px);
-  animation: ${fadeInList} 0.5s ease 0.2s forwards;
+  animation: ${fadeInList} 0.8s ease 0.2s forwards;
 `;
 
 export const ProductsList = styled.section`

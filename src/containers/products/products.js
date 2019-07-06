@@ -62,7 +62,6 @@ function Products({
       )}
       {user.name.length ? (
         <List>
-          <h1>Products List</h1>
           {pages.length > 1 &&
             pages.map(i => {
               const page = i + 1;
