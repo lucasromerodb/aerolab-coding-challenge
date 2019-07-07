@@ -42,6 +42,11 @@ function Products({
   const [productsPerPage] = useState(16);
   const pages = pageNumbers(products, productsPerPage);
 
+  function findItem() {
+    const item = "5a0b35d7734d1d08bf7084c9"; // Nintendo Switch
+    return products.find(i => i._id === item);
+  }
+
   useEffect(() => {
     onRequestProducts();
   }, [sortBy, onRequestProducts]);
@@ -55,7 +60,7 @@ function Products({
     <section>
       {user.name.length && products.length ? (
         <Featured
-          {...products[1]}
+          {...findItem()}
           posting={posting}
           userPoints={userPoints}
           onRequestRedeem={onRequestRedeem}
