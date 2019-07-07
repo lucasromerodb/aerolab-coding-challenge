@@ -1,0 +1,37 @@
+import React, { useState } from "react";
+import { Button, ButtonGroup } from "../../styles/Button";
+
+const sortItems = [
+  { by: "time", text: "Most recent" },
+  { by: "asc", text: "Lowest price" },
+  { by: "desc", text: "Highest price" }
+];
+
+function Filters({ onSortProducts }) {
+  const [sort, setSort] = useState("time");
+  function onSort(e) {
+    const id = e.target.id;
+    onSortProducts(id);
+    setSort(id);
+  }
+  return (
+    <div>
+      <span>Sort by</span>
+      <ButtonGroup>
+        {sortItems.map(i => (
+          <Button
+            small
+            key={i.by}
+            id={i.by}
+            primary={sort === i.by}
+            disabled={sort === i.by}
+            onClick={e => onSort(e)}
+          >
+            {i.text}
+          </Button>
+        ))}
+      </ButtonGroup>
+    </div>
+  );
+}
+export default Filters;

@@ -19,12 +19,7 @@ import { sliceArr, pageNumbers } from "../../utils";
 import Featured from "../../components/featured";
 import { Button, ButtonGroup } from "../../styles/Button";
 import { List, ProductsList, Filters } from "./Styles";
-
-const sortItems = [
-  { by: "time", text: "Most recent" },
-  { by: "asc", text: "Lowest price" },
-  { by: "desc", text: "Highest price" }
-];
+import Pages from "../../components/filters/Filters";
 
 function Products({
   fetching,
@@ -43,14 +38,7 @@ function Products({
   const [prods, setProds] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(16);
-  const [sort, setSort] = useState("time");
   const pages = pageNumbers(products, productsPerPage);
-
-  function onSort(e) {
-    const id = e.target.id;
-    onSortProducts(id);
-    setSort(id);
-  }
 
   useEffect(() => {
     onRequestProducts();
@@ -77,23 +65,7 @@ function Products({
       {user.name.length ? (
         <List>
           <Filters>
-            <div>
-              <span>Sort by</span>
-              <ButtonGroup>
-                {sortItems.map(i => (
-                  <Button
-                    small
-                    key={i.by}
-                    id={i.by}
-                    primary={sort === i.by}
-                    disabled={sort === i.by}
-                    onClick={e => onSort(e)}
-                  >
-                    {i.text}
-                  </Button>
-                ))}
-              </ButtonGroup>
-            </div>
+            <Pages onSortProducts={onSortProducts} />
             <div>
               <span>Page</span>
               <ButtonGroup>
