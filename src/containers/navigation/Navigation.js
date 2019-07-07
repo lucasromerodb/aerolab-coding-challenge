@@ -15,10 +15,11 @@ import Points from "../../components/points";
 
 import { Header, Nav, BuyPointsWrapper } from "./Styles";
 import BuyPoints from "../../components/buypoints";
+import NavItems from "../../components/navitems";
 
 function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
   const [openBuy, setOpenBuy] = useState(false);
-  const { _id, name, points } = user;
+  const { name, points } = user;
 
   useEffect(() => {
     onGetUser();
@@ -32,6 +33,8 @@ function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
       <div>
         {points ? (
           <Nav>
+            <NavItems />
+            <Points points={points} setOpenBuy={setOpenBuy} />
             {openBuy ? (
               <BuyPointsWrapper>
                 <BuyPoints onAddPoints={onAddPoints} setOpenBuy={setOpenBuy} />
@@ -39,27 +42,11 @@ function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
             ) : (
               ""
             )}
-            <a
-              href="https://github.com/lucasromerodb/aerolab-coding-challenge"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="links"
-            >
-              GitHub »
-            </a>
-            <Link to="/" className="links">
-              Products
-            </Link>
-            <Link to="/history" className="links">
-              Redeem History
-            </Link>
-            <Points points={points} setOpenBuy={setOpenBuy} />
           </Nav>
         ) : (
           ""
         )}
       </div>
-      {/* <h2>{_id}</h2> */}
       {/* <p>{pointsMsg}</p> */}
     </Header>
   );

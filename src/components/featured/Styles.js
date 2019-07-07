@@ -36,7 +36,6 @@ export const FeaturedBox = styled.section`
   flex-direction: row;
 
   height: ${commonHeight}px;
-  margin-bottom: 50px;
 
   border-radius: ${Vars.radius.md};
 

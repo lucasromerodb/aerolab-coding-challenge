@@ -18,7 +18,9 @@ export const Nav = styled.nav`
   opacity: 0;
 
   animation: ${fadeInNav} 0.8s ease 0.3s forwards;
+`;
 
+export const NavLinks = styled.ul`
   a {
     display: block;
     padding: 10px 15px;
@@ -33,10 +35,12 @@ export const Nav = styled.nav`
     }
   }
 
-  .links {
-    margin-right: 20px;
+  .itemNav {
+    margin-right: 10px;
+    background: red;
 
-    :last-child() {
+    :last-child {
+      background: blue;
       margin-right: 40px;
     }
   }
