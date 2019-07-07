@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Button, ButtonGroup } from "../../styles/Button";
+
+import { Button, ButtonGroup, ButtonGroupWrapper } from "../../styles/Button";
 
 const sortItems = [
   { by: "time", text: "Most recent" },
@@ -9,13 +10,15 @@ const sortItems = [
 
 function Filters({ onSortProducts }) {
   const [sort, setSort] = useState("time");
+
   function onSort(e) {
     const id = e.target.id;
     onSortProducts(id);
     setSort(id);
   }
+
   return (
-    <div>
+    <ButtonGroupWrapper>
       <span>Sort by</span>
       <ButtonGroup>
         {sortItems.map(i => (
@@ -31,7 +34,7 @@ function Filters({ onSortProducts }) {
           </Button>
         ))}
       </ButtonGroup>
-    </div>
+    </ButtonGroupWrapper>
   );
 }
 export default Filters;

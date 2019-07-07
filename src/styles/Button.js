@@ -97,6 +97,20 @@ export const RedeemButton = styled(Button)`
   }
 `;
 
+export const ButtonGroupWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding-top: 3px;
+  padding-bottom: 3px;
+
+  > * {
+    display: inline-block;
+    margin-right: 20px;
+  }
+`;
+
 export const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;

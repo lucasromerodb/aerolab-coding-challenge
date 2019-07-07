@@ -12,14 +12,15 @@ import {
   selectSortBy,
   selectRedeemId
 } from "../../ducks/productsDuck";
-import Product from "../../components/product";
 import { selectUserPoints, selectUserRedeemHistory, selectUser } from "../../ducks/userDuck";
 
-import { sliceArr, pageNumbers } from "../../utils";
-import Featured from "../../components/featured";
-import { Button, ButtonGroup } from "../../styles/Button";
-import { List, ProductsList, Filters } from "./Styles";
+import Product from "../../components/product";
 import Pages from "../../components/filters/Filters";
+import Pagination from "../../components/pagination/Pagination";
+import Featured from "../../components/featured";
+
+import { Toolbar } from "../../styles/Toolbar";
+import { List, ProductsList } from "./Styles";
 
 function Products({
   fetching,
@@ -36,18 +37,10 @@ function Products({
   onSortProducts
 }) {
   const [prods, setProds] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(16);
-  const pages = pageNumbers(products, productsPerPage);
 
   useEffect(() => {
     onRequestProducts();
   }, [sortBy, onRequestProducts]);
-
-  useEffect(() => {
-    const sliced = sliceArr(products, currentPage, productsPerPage);
-    setProds(sliced);
-  }, [products, currentPage, productsPerPage]);
 
   return (
     <section>
@@ -64,29 +57,10 @@ function Products({
       )}
       {user.name.length ? (
         <List>
-          <Filters>
+          <Toolbar>
             <Pages onSortProducts={onSortProducts} />
-            <div>
-              <span>Page</span>
-              <ButtonGroup>
-                {pages.length > 1
-                  ? pages.map(i => {
-                      const page = i + 1;
-                      return (
-                        <Button
-                          small={true}
-                          key={`page_${page}`}
-                          disabled={page === currentPage}
-                          onClick={() => setCurrentPage(page)}
-                        >
-                          {page}
-                        </Button>
-                      );
-                    })
-                  : ""}
-              </ButtonGroup>
-            </div>
-          </Filters>
+            <Pagination products={products} setProds={setProds} />
+          </Toolbar>
           <p>{redeemMsg}</p>
           <ProductsList className="Products_list">
             {prods.length
@@ -106,6 +80,10 @@ function Products({
                 })
               : ""}
           </ProductsList>
+          <Toolbar>
+            {prods.length} of {products.length} products
+            <Pagination products={products} setProds={setProds} />
+          </Toolbar>
         </List>
       ) : (
         ""
