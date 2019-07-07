@@ -14,6 +14,7 @@ import User from "../../components/user";
 import Points from "../../components/points";
 
 import { Header, Nav } from "./Styles";
+import AeroPay from "../../components/aeropay";
 
 function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
   const { _id, name, points } = user;
@@ -28,6 +29,7 @@ function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
         <User name={name} />
       </Link>
       <div>
+        <AeroPay />
         {points ? (
           <Nav>
             <a

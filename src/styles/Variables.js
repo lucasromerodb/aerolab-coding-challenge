@@ -7,6 +7,8 @@ const baseAlt = darken(0.2, base);
 const primary = "#37a5ff";
 const secondary = "#ff3770";
 const success = "#04cc47";
+const aeropayPrimary = "#708AFB";
+const aeropaySecondary = "#7A76FE";
 
 export const Vars = {
   color: {
@@ -18,7 +20,11 @@ export const Vars = {
     },
     primary,
     secondary,
-    success
+    success,
+    aeropay: {
+      aeropayPrimary,
+      aeropaySecondary
+    }
   },
   fontFamily: `"Montserrat", sans-serif`,
   radius: {
