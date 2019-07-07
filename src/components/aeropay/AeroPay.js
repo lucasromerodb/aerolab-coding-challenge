@@ -12,7 +12,7 @@ function AeroPay() {
         <img src={logo} alt="Aero Pay logo" />
         <span>Aero Pay</span>
       </Name>
-      <img src={mastercard} alt="Aero Pay logo" />
+      <img src={mastercard} alt="Master Card logo" />
     </AeroBadge>
   );
 }

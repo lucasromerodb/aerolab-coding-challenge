@@ -47,6 +47,11 @@ export const Button = styled.button`
       border-radius: ${Vars.radius.sm};
       font-size: 0.9rem;
     `}
+
+    .icon {
+      width: 25px;
+      margin-left: 10px;
+    }
 `;
 
 const bouncingButton = keyframes`
@@ -116,6 +121,7 @@ export const ButtonGroupWrapper = styled.div`
 export const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
+  transition: background-color 0.2s ease, color 0.2s ease;
 
   ${Button} {
     width: auto;
@@ -146,7 +152,5 @@ export const ButtonGroup = styled.div`
     :hover {
       color: ${Vars.color.primary};
     }
-
-    transition: background-color 0.2s ease, color 0.2s ease;
   }
 `;

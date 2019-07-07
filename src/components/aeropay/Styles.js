@@ -36,7 +36,7 @@ export const AeroBadge = styled.div`
   align-items: center;
 
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   height: 60px;
 
   box-sizing: border-box;
@@ -67,4 +67,3 @@ export const AeroBadge = styled.div`
     fallback: "#FFF"
   })};
 `;
-export const AeroBadges = styled.div``;

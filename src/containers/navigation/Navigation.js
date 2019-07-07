@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -13,10 +13,11 @@ import { selectRedeemMsg } from "../../ducks/productsDuck";
 import User from "../../components/user";
 import Points from "../../components/points";
 
-import { Header, Nav } from "./Styles";
-import AeroPay from "../../components/aeropay";
+import { Header, Nav, BuyPointsWrapper } from "./Styles";
+import BuyPoints from "../../components/buypoints";
 
 function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
+  const [openBuy, setOpenBuy] = useState(false);
   const { _id, name, points } = user;
 
   useEffect(() => {
@@ -29,28 +30,36 @@ function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
         <User name={name} />
       </Link>
       <div>
-        <AeroPay />
         {points ? (
           <Nav>
+            {openBuy ? (
+              <BuyPointsWrapper>
+                <BuyPoints onAddPoints={onAddPoints} setOpenBuy={setOpenBuy} />
+              </BuyPointsWrapper>
+            ) : (
+              ""
+            )}
             <a
               href="https://github.com/lucasromerodb/aerolab-coding-challenge"
               target="_blank"
               rel="noopener noreferrer"
+              className="links"
             >
               GitHub »
             </a>
-            <Link to="/">Products</Link>
-            <Link to="/history">Redeem History</Link>
-            <Points points={points} />
+            <Link to="/" className="links">
+              Products
+            </Link>
+            <Link to="/history" className="links">
+              Redeem History
+            </Link>
+            <Points points={points} setOpenBuy={setOpenBuy} />
           </Nav>
         ) : (
           ""
         )}
       </div>
       {/* <h2>{_id}</h2> */}
-      {/* <button onClick={() => onAddPoints(1000)}>Buy 1000 Points</button>
-      <button onClick={() => onAddPoints(5000)}>Buy 5000 Points</button>
-      <button onClick={() => onAddPoints(7500)}>Buy 7500 Points</button> */}
       {/* <p>{pointsMsg}</p> */}
     </Header>
   );

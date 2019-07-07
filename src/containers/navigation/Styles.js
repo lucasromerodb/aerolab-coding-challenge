@@ -8,6 +8,8 @@ const fadeInNav = keyframes`
 `;
 
 export const Nav = styled.nav`
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -30,17 +32,30 @@ export const Nav = styled.nav`
       color: ${Vars.color.primary};
     }
   }
+
+  .links {
+    margin-right: 20px;
+
+    :last-child() {
+      margin-right: 40px;
+    }
+  }
+`;
+
+export const BuyPointsWrapper = styled.div`
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
 `;
 
 export const Header = styled.header`
+  position: relative;
+  z-index: 99;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-
-  button {
-    margin-left: 40px;
-  }
 `;
