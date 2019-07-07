@@ -96,3 +96,41 @@ export const RedeemButton = styled(Button)`
     margin-left: 10px;
   }
 `;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  ${Button} {
+    width: auto;
+    border-radius: 0;
+
+    :nth-child(n + 2):nth-child(-n + 2) {
+      border-left: 1px solid ${Vars.color.base.base};
+      border-right: 1px solid ${Vars.color.base.base};
+    }
+
+    :first-child {
+      border-radius: 10px 0 0 10px;
+    }
+
+    :last-child {
+      border-radius: 0 10px 10px 0;
+    }
+
+    :disabled {
+      background-color: ${Vars.color.primary};
+      cursor: default;
+
+      :hover {
+        color: ${Vars.color.white};
+      }
+    }
+
+    :hover {
+      color: ${Vars.color.primary};
+    }
+
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+`;

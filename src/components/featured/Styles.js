@@ -12,6 +12,7 @@ const fadeInFeatured = keyframes`
 `;
 
 export const FeaturedImg = styled.div`
+  background-color: ${Vars.color.white};
   background-image: url(${bg});
   background-size: cover;
   background-position: center center;

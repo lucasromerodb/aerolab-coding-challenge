@@ -17,7 +17,14 @@ import { selectUserPoints, selectUserRedeemHistory, selectUser } from "../../duc
 
 import { sliceArr, pageNumbers } from "../../utils";
 import Featured from "../../components/featured";
-import { List, ProductsList } from "./Styles";
+import { Button, ButtonGroup } from "../../styles/Button";
+import { List, ProductsList, Filters } from "./Styles";
+
+const sortItems = [
+  { by: "time", text: "Most recent" },
+  { by: "asc", text: "Lowest price" },
+  { by: "desc", text: "Highest price" }
+];
 
 function Products({
   fetching,
@@ -36,7 +43,14 @@ function Products({
   const [prods, setProds] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(16);
+  const [sort, setSort] = useState("time");
   const pages = pageNumbers(products, productsPerPage);
+
+  function onSort(e) {
+    const id = e.target.id;
+    onSortProducts(id);
+    setSort(id);
+  }
 
   useEffect(() => {
     onRequestProducts();
@@ -62,27 +76,45 @@ function Products({
       )}
       {user.name.length ? (
         <List>
-          {pages.length > 1 &&
-            pages.map(i => {
-              const page = i + 1;
-              return (
-                <button
-                  key={`page_${page}`}
-                  disabled={page === currentPage}
-                  onClick={() => setCurrentPage(page)}
-                >
-                  {page}
-                </button>
-              );
-            })}
-          {fetching ? (
-            <button disabled>Fetching products...</button>
-          ) : (
-            <button onClick={onRequestProducts}>REQUEST PRODUCTS</button>
-          )}
-          <button onClick={() => onSortProducts("asc")}>Lowest price</button>
-          <button onClick={() => onSortProducts("desc")}>Highest price</button>
-          <button onClick={() => onSortProducts(null)}>Most recent</button>
+          <Filters>
+            <div>
+              <span>Sort by</span>
+              <ButtonGroup>
+                {sortItems.map(i => (
+                  <Button
+                    small
+                    key={i.by}
+                    id={i.by}
+                    primary={sort === i.by}
+                    disabled={sort === i.by}
+                    onClick={e => onSort(e)}
+                  >
+                    {i.text}
+                  </Button>
+                ))}
+              </ButtonGroup>
+            </div>
+            <div>
+              <span>Page</span>
+              <ButtonGroup>
+                {pages.length > 1
+                  ? pages.map(i => {
+                      const page = i + 1;
+                      return (
+                        <Button
+                          small={true}
+                          key={`page_${page}`}
+                          disabled={page === currentPage}
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </Button>
+                      );
+                    })
+                  : ""}
+              </ButtonGroup>
+            </div>
+          </Filters>
           <p>{redeemMsg}</p>
           <ProductsList className="Products_list">
             {prods.length

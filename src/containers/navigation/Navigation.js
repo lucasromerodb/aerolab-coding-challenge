@@ -28,7 +28,7 @@ function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
         <User name={name} />
       </Link>
       <div>
-        {points && (
+        {points ? (
           <Nav>
             <a
               href="https://github.com/lucasromerodb/aerolab-coding-challenge"
@@ -41,6 +41,8 @@ function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints }) {
             <Link to="/history">Redeem History</Link>
             <Points points={points} />
           </Nav>
+        ) : (
+          ""
         )}
       </div>
       {/* <h2>{_id}</h2> */}

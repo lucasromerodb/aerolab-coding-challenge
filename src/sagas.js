@@ -30,7 +30,7 @@ function* productsSaga() {
   try {
     const sortBy = yield select(selectSortBy);
     const products = yield call(getProducts);
-    const sorted = sortBy !== null ? sortArrBy(products, sortBy) : products;
+    const sorted = sortBy !== "time" ? sortArrBy(products, sortBy) : products;
     yield put(productsCallSuccess(sorted));
   } catch (error) {
     yield put(productsCallFailure(error));

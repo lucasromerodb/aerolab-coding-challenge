@@ -14,6 +14,27 @@ export const List = styled.div`
   animation: ${fadeInList} 0.8s ease 0.2s forwards;
 `;
 
+export const Filters = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    span {
+      display: inline-block;
+      margin-right: 20px;
+    }
+  }
+`;
+
 export const ProductsList = styled.section`
   display: grid;
   place-items: start;
