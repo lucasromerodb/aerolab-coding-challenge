@@ -59,47 +59,45 @@ function Products({
   return (
     <section>
       {user.name.length && products.length ? (
-        <Featured
-          {...findItem()}
-          posting={posting}
-          userPoints={userPoints}
-          onRequestRedeem={onRequestRedeem}
-          redeemId={redeemId}
-        />
-      ) : (
-        ""
-      )}
-      {user.name.length ? (
-        <List>
-          <Toolbar>
-            <Filters onSortProducts={onSortProducts} />
-            <Pagination pages={pages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
-          </Toolbar>
-          <p>{redeemMsg}</p>
-          <ProductsList className="Products_list">
-            {prods.length
-              ? prods.map(p => {
-                  const redeemedTimes = userHistory.filter(r => r.productId === p._id).length;
-                  return (
-                    <Product
-                      key={p._id}
-                      {...p}
-                      posting={posting}
-                      userPoints={userPoints}
-                      onRequestRedeem={onRequestRedeem}
-                      redeemId={redeemId}
-                      redeemedTimes={redeemedTimes}
-                    />
-                  );
-                })
-              : ""}
-          </ProductsList>
-          <Toolbar>
-            {currentPage * productsPerPage - productsPerPage + 1} - {currentPage * productsPerPage}{" "}
-            of {products.length} products
-            <Pagination pages={pages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
-          </Toolbar>
-        </List>
+        <>
+          <Featured
+            {...findItem()}
+            posting={posting}
+            userPoints={userPoints}
+            onRequestRedeem={onRequestRedeem}
+            redeemId={redeemId}
+          />
+          <List>
+            <Toolbar>
+              <Filters onSortProducts={onSortProducts} />
+              <Pagination pages={pages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+            </Toolbar>
+            <p>{redeemMsg}</p>
+            <ProductsList className="Products_list">
+              {prods.length
+                ? prods.map(p => {
+                    const redeemedTimes = userHistory.filter(r => r.productId === p._id).length;
+                    return (
+                      <Product
+                        key={p._id}
+                        {...p}
+                        posting={posting}
+                        userPoints={userPoints}
+                        onRequestRedeem={onRequestRedeem}
+                        redeemId={redeemId}
+                        redeemedTimes={redeemedTimes}
+                      />
+                    );
+                  })
+                : ""}
+            </ProductsList>
+            <Toolbar>
+              {currentPage * productsPerPage - productsPerPage + 1} -{" "}
+              {currentPage * productsPerPage} of {products.length} products
+              <Pagination pages={pages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+            </Toolbar>
+          </List>
+        </>
       ) : (
         ""
       )}

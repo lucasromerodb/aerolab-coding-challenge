@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { transparentize } from "polished";
 
-import { Vars, Device } from "../../styles/Variables";
+import { Vars } from "../../styles/Variables";
 import { Button } from "../../styles/Button";
 
 const BouncingNotification = keyframes`
@@ -18,7 +18,7 @@ export const BuyMore = styled.span`
 export const Notification = styled.span`
   visibility: hidden;
   ${({ points }) =>
-    points < 250 &&
+    points < 500 &&
     css`
       visibility: visible;
     `}
