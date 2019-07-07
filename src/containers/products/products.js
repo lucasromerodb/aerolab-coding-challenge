@@ -15,10 +15,11 @@ import {
 import { selectUserPoints, selectUserRedeemHistory, selectUser } from "../../ducks/userDuck";
 
 import Product from "../../components/product";
-import Pages from "../../components/filters/Filters";
+import Filters from "../../components/filters/Filters";
 import Pagination from "../../components/pagination/Pagination";
 import Featured from "../../components/featured";
 
+import { sliceArr, pageNumbers } from "../../utils";
 import { Toolbar } from "../../styles/Toolbar";
 import { List, ProductsList } from "./Styles";
 
@@ -37,10 +38,18 @@ function Products({
   onSortProducts
 }) {
   const [prods, setProds] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(16);
+  const pages = pageNumbers(products, productsPerPage);
 
   useEffect(() => {
     onRequestProducts();
   }, [sortBy, onRequestProducts]);
+
+  useEffect(() => {
+    const sliced = sliceArr(products, currentPage, productsPerPage);
+    setProds(sliced);
+  }, [products, currentPage, productsPerPage, setProds]);
 
   return (
     <section>
@@ -58,8 +67,8 @@ function Products({
       {user.name.length ? (
         <List>
           <Toolbar>
-            <Pages onSortProducts={onSortProducts} />
-            <Pagination products={products} setProds={setProds} />
+            <Filters onSortProducts={onSortProducts} />
+            <Pagination pages={pages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
           </Toolbar>
           <p>{redeemMsg}</p>
           <ProductsList className="Products_list">
@@ -82,7 +91,7 @@ function Products({
           </ProductsList>
           <Toolbar>
             {prods.length} of {products.length} products
-            <Pagination products={products} setProds={setProds} />
+            <Pagination pages={pages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
           </Toolbar>
         </List>
       ) : (

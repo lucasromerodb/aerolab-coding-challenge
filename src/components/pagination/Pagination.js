@@ -1,23 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { Button, ButtonGroup, ButtonGroupWrapper } from "../../styles/Button";
-import { sliceArr, pageNumbers } from "../../utils";
 
-function Pagination({ products, setProds }) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(16);
-  const pages = pageNumbers(products, productsPerPage);
-
-  useEffect(() => {
-    const sliced = sliceArr(products, currentPage, productsPerPage);
-    setProds(sliced);
-  }, [products, currentPage, productsPerPage, setProds]);
-
+function Pagination({ pages, currentPage, setCurrentPage }) {
   return (
     <ButtonGroupWrapper>
       <span>Page</span>
       <ButtonGroup>
-        {pages.length > 1
+        {pages && pages.length > 1
           ? pages.map(i => {
               const page = i + 1;
               return (
