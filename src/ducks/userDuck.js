@@ -59,6 +59,7 @@ export const selectUser = store => store.user;
 export const selectUserPoints = store => store.user.points;
 export const selectAmount = store => store.user.amount;
 export const selectPointsMsg = store => store.user.pointsMsg;
+export const selectUserRedeemHistory = store => store.user.redeemHistory;
 
 /* === REDUCER === */
 
@@ -66,7 +67,7 @@ const initialState = {
   fetching: false,
   error: null,
   _id: null,
-  name: "Kite",
+  name: "",
   points: 0,
   redeemHistory: [],
   createDate: "Big Bang",

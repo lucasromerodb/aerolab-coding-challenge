@@ -1,0 +1,19 @@
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ebebeb;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background-image: url("./assets/pattern.svg");
+  background-position: center -140px;
+  background-repeat: repeat-x;
+  background-size: 500px;
+}
+
+a {
+  text-decoration: none;
+}

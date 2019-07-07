@@ -1,22 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Products from "./containers/products/";
-import User from "./containers/user/";
+import Navigation from "./containers/navigation";
 import History from "./containers/history/";
 
-import "./App.scss";
+import { Wrapper } from "./styles/Mixins";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <User />
-        <Link to="/">Home</Link>
-        <Link to="/history">Redeem History</Link>
+      <Wrapper>
+        <Navigation />
         <Route path="/" exact component={Products} />
         <Route path="/history" component={History} />
-      </div>
+      </Wrapper>
     </Router>
   );
 }

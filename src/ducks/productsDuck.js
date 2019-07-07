@@ -79,7 +79,7 @@ const initialState = {
   posting: false,
   redeemId: null,
   redeemMsg: null,
-  sortBy: null
+  sortBy: "time"
 };
 
 function productsReducer(state = initialState, action = {}) {

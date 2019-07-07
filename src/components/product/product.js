@@ -1,7 +1,15 @@
 import React from "react";
+
 import coin from "../../assets/coin.svg";
-import "../../styles/buttons.scss";
-import "./Product.scss";
+import { RedeemButton } from "../../styles/Button";
+import {
+  ProductBox,
+  ProductPicture,
+  ProductInfo,
+  ProductTitle,
+  ProductCategory,
+  ProductRdeemed
+} from "./Styles";
 
 function Product({
   _id,
@@ -12,45 +20,50 @@ function Product({
   posting,
   userPoints,
   redeemId,
+  redeemedTimes,
   onRequestRedeem
 }) {
   return (
-    <section className="Product">
-      <div className="Product__picture">
+    <ProductBox className="Product">
+      <ProductPicture>
         <img src={img.url} alt={name} />
-      </div>
-      <div className="Product__details">
-        <span className="Product__category" title={category}>
-          {category}
-        </span>
-        <h1 className="Product__name" title={name}>
-          {name}
-        </h1>
+      </ProductPicture>
+      <ProductInfo className="Product__details">
+        <ProductCategory title={category}>{category}</ProductCategory>
+        <ProductTitle title={name}>{name}</ProductTitle>
+        <ProductRdeemed times={redeemedTimes}>
+          {redeemedTimes > 0
+            ? redeemedTimes > 1
+              ? `Rdeemed ${redeemedTimes} times`
+              : `You already have this item`
+            : `Never redeemed`}
+        </ProductRdeemed>
+
         {userPoints >= cost ? (
-          <button
-            className={`btn btn--sm btn--primary ${posting && redeemId === _id && "posting"}`}
+          <RedeemButton
+            primary
+            small
+            disabled={false}
+            posting={posting && redeemId === _id}
             onClick={() => onRequestRedeem(_id)}
-            disabled={posting}
           >
-            <span className="btn__text">
-              {posting && redeemId === _id ? "Processing..." : "Redeem now"}
-            </span>
-            <div className="btn__cost">
-              <strong className="btn__cost_number">{cost}</strong>
-              <img src={coin} className="btn__cost_coin" alt="Coin icon" />
+            <div>{posting && redeemId === _id ? "Processing..." : "Redeem now"}</div>
+            <div className="price">
+              <strong className="cost">{cost}</strong>
+              <img src={coin} alt="Coin icon" className="icon" />
             </div>
-          </button>
+          </RedeemButton>
         ) : (
-          <button className="btn btn--sm btn--disabled" disabled={true}>
-            <span className="btn__text">You need</span>
-            <div className="btn__cost">
-              <strong className="btn__cost_number">{cost - userPoints}</strong>
-              <img src={coin} className="btn__cost_coin" alt="Coin icon" />
+          <RedeemButton small disabled={true}>
+            <div>You need</div>
+            <div className="price">
+              <strong className="cost">{cost - userPoints}</strong>
+              <img src={coin} alt="Coin icon" className="icon" />
             </div>
-          </button>
+          </RedeemButton>
         )}
-      </div>
-    </section>
+      </ProductInfo>
+    </ProductBox>
   );
 }
 

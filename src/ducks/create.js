@@ -20,10 +20,10 @@ const reducers = combineReducers({ products, user, history });
 
 const store = createStore(
   reducers,
-  compose(
-    applyMiddleware(sagaMiddleware),
-    reduxDevTools
-  )
+  applyMiddleware(sagaMiddleware)
+  // compose(
+  //   reduxDevTools
+  // )
 );
 
 sagaMiddleware.run(watcherProducts);

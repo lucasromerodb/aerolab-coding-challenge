@@ -12,11 +12,16 @@ import {
   selectSortBy,
   selectRedeemId
 } from "../../ducks/productsDuck";
+import { selectUserPoints, selectUserRedeemHistory, selectUser } from "../../ducks/userDuck";
+
 import Product from "../../components/product";
-import { selectUserPoints } from "../../ducks/userDuck";
+import Filters from "../../components/filters/Filters";
+import Pagination from "../../components/pagination/Pagination";
+import Featured from "../../components/featured";
 
 import { sliceArr, pageNumbers } from "../../utils";
-import "./Products.scss";
+import { Toolbar } from "../../styles/Toolbar";
+import { List, ProductsList } from "./Styles";
 
 function Products({
   fetching,
@@ -26,6 +31,8 @@ function Products({
   redeemMsg,
   sortBy,
   userPoints,
+  userHistory,
+  user,
   onRequestProducts,
   onRequestRedeem,
   onSortProducts
@@ -35,6 +42,11 @@ function Products({
   const [productsPerPage] = useState(16);
   const pages = pageNumbers(products, productsPerPage);
 
+  function findItem() {
+    const item = "5a0b35d7734d1d08bf7084c9"; // Nintendo Switch
+    return products.find(i => i._id === item);
+  }
+
   useEffect(() => {
     onRequestProducts();
   }, [sortBy, onRequestProducts]);
@@ -42,48 +54,53 @@ function Products({
   useEffect(() => {
     const sliced = sliceArr(products, currentPage, productsPerPage);
     setProds(sliced);
-  }, [products, currentPage, productsPerPage]);
+  }, [products, currentPage, productsPerPage, setProds]);
 
   return (
     <section>
-      <h1>Products List</h1>
-
-      {pages.length > 1 &&
-        pages.map(i => {
-          const page = i + 1;
-          return (
-            <button
-              key={`page_${page}`}
-              disabled={page === currentPage}
-              onClick={() => setCurrentPage(page)}
-            >
-              {page}
-            </button>
-          );
-        })}
-      {fetching ? (
-        <button disabled>Fetching products...</button>
+      {user.name.length && products.length ? (
+        <>
+          <Featured
+            {...findItem()}
+            posting={posting}
+            userPoints={userPoints}
+            onRequestRedeem={onRequestRedeem}
+            redeemId={redeemId}
+          />
+          <List>
+            <Toolbar>
+              <Filters onSortProducts={onSortProducts} />
+              <Pagination pages={pages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+            </Toolbar>
+            <p>{redeemMsg}</p>
+            <ProductsList className="Products_list">
+              {prods.length
+                ? prods.map(p => {
+                    const redeemedTimes = userHistory.filter(r => r.productId === p._id).length;
+                    return (
+                      <Product
+                        key={p._id}
+                        {...p}
+                        posting={posting}
+                        userPoints={userPoints}
+                        onRequestRedeem={onRequestRedeem}
+                        redeemId={redeemId}
+                        redeemedTimes={redeemedTimes}
+                      />
+                    );
+                  })
+                : ""}
+            </ProductsList>
+            <Toolbar>
+              {currentPage * productsPerPage - productsPerPage + 1} -{" "}
+              {currentPage * productsPerPage} of {products.length} products
+              <Pagination pages={pages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+            </Toolbar>
+          </List>
+        </>
       ) : (
-        <button onClick={onRequestProducts}>REQUEST PRODUCTS</button>
+        ""
       )}
-      <button onClick={() => onSortProducts("asc")}>Lowest price</button>
-      <button onClick={() => onSortProducts("desc")}>Highest price</button>
-      <button onClick={() => onSortProducts(null)}>Most recent</button>
-      <p>{redeemMsg}</p>
-      <section className="Products_list">
-        {prods.length
-          ? prods.map(p => (
-              <Product
-                key={p._id}
-                {...p}
-                posting={posting}
-                userPoints={userPoints}
-                onRequestRedeem={onRequestRedeem}
-                redeemId={redeemId}
-              />
-            ))
-          : ""}
-      </section>
     </section>
   );
 }
@@ -95,7 +112,9 @@ const mapStateToProps = store => ({
   redeemId: selectRedeemId(store),
   redeemMsg: selectRedeemMsg(store),
   sortBy: selectSortBy(store),
-  userPoints: selectUserPoints(store)
+  userPoints: selectUserPoints(store),
+  userHistory: selectUserRedeemHistory(store),
+  user: selectUser(store)
 });
 
 const mapDispatchToProps = dispatch => ({
