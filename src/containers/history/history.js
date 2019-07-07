@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { sortArrBy } from "../../utils";
 
 import { historyCallRequest, selectHistory } from "../../ducks/historyDuck";
 import ProductAlt from "../../components/product-alt";
 import { selectRedeemMsg } from "../../ducks/productsDuck";
+import { selectUser } from "../../ducks/userDuck";
 
-function History({ history, redeemMsg, onGetHistory }) {
+function History({ history, redeemMsg, user, onGetHistory }) {
   useEffect(() => {
     onGetHistory();
   }, [onGetHistory, redeemMsg]);
-
   return (
     <section>
-      <h1>Products History</h1>
-      {history.length
-        ? history.map(p => <ProductAlt key={p.createDate} {...p} />)
+      {history.length && user.name.length
+        ? history.map((p, i) => <ProductAlt key={p.createDate} {...p} index={i} />)
         : "No hay compras aún..."}
     </section>
   );
@@ -22,6 +22,7 @@ function History({ history, redeemMsg, onGetHistory }) {
 
 const mapStateToProps = store => ({
   history: selectHistory(store),
+  user: selectUser(store),
   redeemMsg: selectRedeemMsg(store)
 });
 

@@ -41,7 +41,7 @@ function Products({
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(16);
   const pages = pageNumbers(products, productsPerPage);
-
+  //c
   function findItem() {
     const item = "5a0b35d7734d1d08bf7084c9"; // Nintendo Switch
     return products.find(i => i._id === item);

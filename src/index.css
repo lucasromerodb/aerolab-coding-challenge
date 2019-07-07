@@ -1,12 +1,16 @@
 html,
 body {
   width: 100%;
-  min-height: 100vh;
+  min-height: 50vh;
+
+  box-sizing: border-box;
   background-color: #ebebeb;
 }
 
 body {
   margin: 0;
+  box-sizing: border-box;
+
   font-family: "Montserrat", sans-serif;
   background-image: url("./assets/pattern.svg");
   background-position: center -140px;
