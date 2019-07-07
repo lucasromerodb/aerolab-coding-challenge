@@ -106,8 +106,10 @@ export const ButtonGroupWrapper = styled.div`
   padding-bottom: 3px;
 
   > * {
-    display: inline-block;
-    margin-right: 20px;
+    :nth-child(1) {
+      display: inline-block;
+      margin-right: 15px;
+    }
   }
 `;
 

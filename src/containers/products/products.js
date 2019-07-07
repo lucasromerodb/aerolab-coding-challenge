@@ -90,7 +90,8 @@ function Products({
               : ""}
           </ProductsList>
           <Toolbar>
-            {prods.length} of {products.length} products
+            {currentPage * productsPerPage - productsPerPage + 1} - {currentPage * productsPerPage}{" "}
+            of {products.length} products
             <Pagination pages={pages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
           </Toolbar>
         </List>
