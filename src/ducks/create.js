@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { createStore, combineReducers, applyMiddleware /*compose*/ } from "redux";
 import createSagaMiddleware from "redux-saga";
 
 import {
@@ -13,7 +13,7 @@ import products from "./productsDuck";
 import user from "./userDuck";
 import history from "./historyDuck";
 
-const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+// const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({ products, user, history });

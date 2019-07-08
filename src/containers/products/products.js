@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { connect } from "react-redux";
 
 import {
@@ -41,7 +41,8 @@ function Products({
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(16);
   const pages = pageNumbers(products, productsPerPage);
-  //c
+  let productsRef = useRef();
+
   function findItem() {
     const item = "5a0b35d7734d1d08bf7084c9"; // Nintendo Switch
     return products.find(i => i._id === item);
@@ -59,18 +60,27 @@ function Products({
   return (
     <section>
       {user.name.length && products.length ? (
-        <>
-          <Featured
-            {...findItem()}
-            posting={posting}
-            userPoints={userPoints}
-            onRequestRedeem={onRequestRedeem}
-            redeemId={redeemId}
-          />
+        <Featured
+          {...findItem()}
+          posting={posting}
+          userPoints={userPoints}
+          onRequestRedeem={onRequestRedeem}
+          redeemId={redeemId}
+        />
+      ) : (
+        ""
+      )}
+      <div ref={productsRef}>
+        {user.name.length && products.length ? (
           <List>
             <Toolbar>
               <Filters onSortProducts={onSortProducts} />
-              <Pagination pages={pages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+              <Pagination
+                pages={pages}
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
+                currentRef={productsRef.current}
+              />
             </Toolbar>
             <p>{redeemMsg}</p>
             <ProductsList className="Products_list">
@@ -94,13 +104,18 @@ function Products({
             <Toolbar>
               {currentPage * productsPerPage - productsPerPage + 1} -{" "}
               {currentPage * productsPerPage} of {products.length} products
-              <Pagination pages={pages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
+              <Pagination
+                pages={pages}
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
+                currentRef={productsRef.current}
+              />
             </Toolbar>
           </List>
-        </>
-      ) : (
-        ""
-      )}
+        ) : (
+          ""
+        )}
+      </div>
     </section>
   );
 }
