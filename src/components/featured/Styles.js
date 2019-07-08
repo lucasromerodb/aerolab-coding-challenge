@@ -31,12 +31,16 @@ export const FeaturedImg = styled.div`
 export const FeaturedInfo = styled.section`
   flex: 3;
   box-sizing: border-box;
-  padding: 20px 15px;
+  padding: 20px;
 
   background-color: ${Vars.color.white};
 
   @media ${Device.tablet} {
-    padding: 20px 40px;
+    padding: 25px 25px;
+  }
+
+  @media ${Device.laptop} {
+    padding: 30px 40px;
   }
 
   button {
@@ -48,7 +52,7 @@ export const FeaturedBox = styled.section`
   display: flex;
   flex-direction: column;
 
-  height: 450px;
+  height: 425px;
 
   border-radius: ${Vars.radius.sm};
 
@@ -65,7 +69,7 @@ export const FeaturedBox = styled.section`
 
   @media ${Device.tablet} {
     flex-direction: row;
-    height: 300px;
+    height: auto;
     border-radius: ${Vars.radius.md};
 
     button {
