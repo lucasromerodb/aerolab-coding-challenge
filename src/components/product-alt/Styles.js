@@ -18,8 +18,7 @@ export const Picture = styled.img`
   margin-left: 5px;
 
   @media ${Device.mobileM} {
-    width: 100px;
-    margin-right: 250px;
+    margin-right: 30px;
   }
 
   @media ${Device.tablet} {
@@ -92,7 +91,7 @@ export const Coin = styled.strong`
 
   @media (max-width: 767px) {
     position: absolute;
-    bottom: 30px;
+    bottom: 25px;
     left: 20px;
 
     width: 70px;
@@ -112,7 +111,7 @@ export const ProductBox = styled.section`
   justify-content: space-between;
   align-items: flex-start;
 
-  min-height: 100px;
+  min-height: 115px;
 
   box-sizing: border-box;
   padding: 10px;
@@ -137,6 +136,7 @@ export const ProductBox = styled.section`
 
 
   @media ${Device.tablet} {
+    min-height: 100px;
     align-items: center;
 
     padding: 20px;
