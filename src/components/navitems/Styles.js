@@ -18,7 +18,7 @@ export const NavLinks = styled.ul`
   margin-right: 30px;
 
   background-color: ${Vars.color.white};
-  box-shadow: 0 -3px 5px ${transparentize(0.8, Vars.color.black)};
+  box-shadow: 0 -2px 3px ${transparentize(0.9, Vars.color.black)};
 
   @media ${Device.tablet} {
     position: relative;
