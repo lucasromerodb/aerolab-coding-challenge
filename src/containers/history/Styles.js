@@ -4,31 +4,33 @@ import { Device } from "../../styles/Variables";
 
 const fadeInGoTop = keyframes`
   to {
-    transform: translateY(0) scaleX(1);
+    transform: translateY(0) translateX(-50%) scaleX(1);
     opacity: 1;
   }
 `;
 
 export const GoTop = styled(Button)`
+  display: inline-block;
+  width: auto;
   position: fixed;
   z-index: 2;
+  left: 50%;
   bottom: 70px;
-  left: ${window.innerWidth / 2 - 60}px;
 
-  width: 120px;
   justify-content: center;
 
   padding: 7px 14px;
-  transform: translateY(70px) scaleX(0.8);
+  opacity: 0;
+  transform-origin: center center;
+  transform: translateY(70px) translateX(-50%) scaleX(0.8);
 
   font-size: 0.8rem;
 
-  opacity: 0;
   animation: ${fadeInGoTop} 0.3s ease 1s forwards;
 
   @media ${Device.tablet} {
     bottom: 15px;
-    transform: translateY(45px) scaleX(0.8);
+    transform: translateY(45px) translateX(-50%) scaleX(0.8);
   }
 `;
 

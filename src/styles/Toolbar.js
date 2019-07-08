@@ -20,17 +20,17 @@ export const Toolbar = styled.div`
       margin-top: 0px;
     `}
 
-    ${({ single }) =>
-      !single &&
-      css`
-        > * {
-          @media (max-width: 767px) {
-            :first-child {
-              margin-bottom: 10px;
-            }
+  ${({ single }) =>
+    !single &&
+    css`
+      > * {
+        @media (max-width: 767px) {
+          :first-child {
+            margin-bottom: 10px;
           }
         }
-      `}
+      }
+    `}
 
 
   @media ${Device.tablet} {

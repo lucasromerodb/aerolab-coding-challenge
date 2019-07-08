@@ -17,6 +17,5 @@ function Alert({ msg, resetMsg }) {
   }, [msg, resetMsg]);
 
   return !!msg && showMsg && <AlertBox>{msg}</AlertBox>;
-  // return <AlertBox>You've redeem the product successfully</AlertBox>;
 }
 export default Alert;

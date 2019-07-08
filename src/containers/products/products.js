@@ -65,15 +65,17 @@ function Products({
 
   return (
     <section>
-      <Alert msg={redeemMsg} resetMsg={onResetRedeemMsg} />
       {user.name.length && products.length ? (
-        <Featured
-          {...findItem()}
-          posting={posting}
-          userPoints={userPoints}
-          onRequestRedeem={onRequestRedeem}
-          redeemId={redeemId}
-        />
+        <>
+          <Alert msg={redeemMsg} resetMsg={onResetRedeemMsg} />
+          <Featured
+            {...findItem()}
+            posting={posting}
+            userPoints={userPoints}
+            onRequestRedeem={onRequestRedeem}
+            redeemId={redeemId}
+          />
+        </>
       ) : (
         ""
       )}
