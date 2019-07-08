@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { NavLinks } from "./Styles";
+import { Github } from "styled-icons/boxicons-logos/Github";
+import { History } from "styled-icons/boxicons-regular/History";
+import { Grid } from "styled-icons/boxicons-solid/Grid";
 
 function NavItems() {
   return (
@@ -13,17 +16,20 @@ function NavItems() {
           rel="noopener noreferrer"
           className="itemNav"
         >
-          GitHub »
+          <span className="navText">GitHub »</span>
+          <Github className="navIcon" />
         </a>
       </li>
       <li>
         <Link to="/" className="itemNav">
-          Products
+          <span className="navText">Products</span>
+          <Grid className="navIcon" />
         </Link>
       </li>
       <li>
         <Link to="/history" className="itemNav">
-          Redeem History
+          <span className="navText">Redeem History</span>
+          <History className="navIcon" />
         </Link>
       </li>
     </NavLinks>

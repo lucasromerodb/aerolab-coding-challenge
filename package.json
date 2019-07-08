@@ -13,7 +13,8 @@
     "react-scripts": "3.0.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.5",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "styled-icons": "^8.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
