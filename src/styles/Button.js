@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { transparentize } from "polished";
 
-import { Vars, Device } from "./Variables";
+import { Vars } from "./Variables";
 
 export const Button = styled.button`
   display: flex;

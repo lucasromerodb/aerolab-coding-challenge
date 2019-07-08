@@ -36,7 +36,6 @@ export const AeroBadge = styled.div`
   align-items: center;
 
   width: 100%;
-  max-width: 400px;
   height: 60px;
 
   box-sizing: border-box;

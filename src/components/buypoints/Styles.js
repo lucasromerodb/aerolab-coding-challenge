@@ -54,6 +54,8 @@ export const BuyButtons = styled(ButtonGroup)`
 
   ${Button} {
     background-color: transparent;
+    width: 100%;
+    justify-content: center;
   }
 `;
 

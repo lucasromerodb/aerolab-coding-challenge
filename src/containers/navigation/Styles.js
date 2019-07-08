@@ -27,6 +27,11 @@ export const BuyPointsWrapper = styled.div`
   z-index: 1;
   top: 0;
   right: 0;
+
+  @media (max-width: 767px) {
+    position: fixed;
+    left: 0;
+  }
 `;
 
 export const Header = styled.header`
