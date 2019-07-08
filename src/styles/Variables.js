@@ -8,6 +8,7 @@ const baseAlt = darken(0.2, base);
 const primary = "#708AFB";
 const secondary = "#ff3770";
 const success = "#04cc47";
+const warning = "#ffab00";
 const aeropayPrimary = "#708AFB";
 const aeropaySecondary = "#7A76FE";
 
@@ -22,6 +23,7 @@ export const Vars = {
     primary,
     secondary,
     success,
+    warning,
     aeropay: {
       aeropayPrimary,
       aeropaySecondary

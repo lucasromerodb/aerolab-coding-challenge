@@ -10,7 +10,8 @@ import {
   selectPosting,
   selectRedeemMsg,
   selectSortBy,
-  selectRedeemId
+  selectRedeemId,
+  resetRedeemMsg
 } from "../../ducks/productsDuck";
 import { selectUserPoints, selectUserRedeemHistory, selectUser } from "../../ducks/userDuck";
 
@@ -21,7 +22,8 @@ import Featured from "../../components/featured";
 
 import { sliceArr, pageNumbers } from "../../utils";
 import { Toolbar } from "../../styles/Toolbar";
-import { List, ProductsList, PaginationInfo } from "./Styles";
+import { List, ProductsList } from "./Styles";
+import Alert from "../../components/alert";
 
 function Products({
   fetching,
@@ -35,7 +37,8 @@ function Products({
   user,
   onRequestProducts,
   onRequestRedeem,
-  onSortProducts
+  onSortProducts,
+  onResetRedeemMsg
 }) {
   const [prods, setProds] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -62,6 +65,7 @@ function Products({
 
   return (
     <section>
+      <Alert msg={redeemMsg} resetMsg={onResetRedeemMsg} />
       {user.name.length && products.length ? (
         <Featured
           {...findItem()}
@@ -86,7 +90,6 @@ function Products({
                 pageInfo={pageInfo}
               />
             </Toolbar>
-            <p>{redeemMsg}</p>
             <ProductsList className="Products_list">
               {prods.length
                 ? prods.map(p => {
@@ -138,7 +141,8 @@ const mapStateToProps = store => ({
 const mapDispatchToProps = dispatch => ({
   onRequestProducts: () => dispatch(productsCallRequest()),
   onRequestRedeem: productId => dispatch(redeemCallRequest(productId)),
-  onSortProducts: direction => dispatch(sortProducts(direction))
+  onSortProducts: direction => dispatch(sortProducts(direction)),
+  onResetRedeemMsg: () => dispatch(resetRedeemMsg())
 });
 
 export default connect(

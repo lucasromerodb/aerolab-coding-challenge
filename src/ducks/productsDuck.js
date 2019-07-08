@@ -11,6 +11,7 @@ const REDEEM_CALL_REQUEST = `${PROJECT_NAME}${duck}/REDEEM_CALL_REQUEST`;
 const REDEEM_CALL_SUCCESS = `${PROJECT_NAME}${duck}/REDEEM_CALL_SUCCESS`;
 const REDEEM_CALL_FAILURE = `${PROJECT_NAME}${duck}/REDEEM_CALL_FAILURE`;
 const SORT_PRODUCTS = `${PROJECT_NAME}${duck}/SORT_PRODUCTS`;
+const RESET_REDEEM_MSG = `${PROJECT_NAME}${duck}/RESET_REDEEM_MSG`;
 
 /* === TYPES === */
 
@@ -21,7 +22,8 @@ export const types = {
   REDEEM_CALL_REQUEST,
   REDEEM_CALL_SUCCESS,
   REDEEM_CALL_FAILURE,
-  SORT_PRODUCTS
+  SORT_PRODUCTS,
+  RESET_REDEEM_MSG
 };
 
 /* === ACTION CREATORS === */
@@ -58,6 +60,10 @@ export const redeemCallFailure = ({ error }) => ({
 export const sortProducts = direction => ({
   type: types.SORT_PRODUCTS,
   direction
+});
+
+export const resetRedeemMsg = () => ({
+  type: types.RESET_REDEEM_MSG
 });
 
 /* === SELECTORS === */
@@ -104,6 +110,9 @@ function productsReducer(state = initialState, action = {}) {
 
     case types.SORT_PRODUCTS:
       return { ...state, sortBy: action.direction };
+
+    case types.RESET_REDEEM_MSG:
+      return { ...state, redeemMsg: null };
 
     default:
       return state;

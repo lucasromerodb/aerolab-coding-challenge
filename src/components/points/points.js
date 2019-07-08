@@ -9,9 +9,9 @@ function Points({ points, setOpenBuy }) {
         <Notification points={points} />
         <UserPoints>
           {points}
-          <img src={coin} alt="Coin icon" srcset="" className="icon" />
+          <img src={coin} alt="Coin icon" className="icon" />
           <BuyMore>+</BuyMore>
-        </UserPoints>{" "}
+        </UserPoints>
       </PointsButton>
     )
   );

@@ -38,9 +38,3 @@ export const ProductsList = styled.section`
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
-
-export const PaginationInfo = styled.span`
-  display: block;
-  padding-top: 10px;
-  padding-bottom: 10px;
-`;

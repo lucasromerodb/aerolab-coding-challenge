@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { linearGradient } from "polished";
-import { Vars, Device } from "../../styles/Variables";
+import { Vars } from "../../styles/Variables";
 import pattern from "../../assets/aeropay-pattern.svg";
 
 export const Pattern = styled.div`

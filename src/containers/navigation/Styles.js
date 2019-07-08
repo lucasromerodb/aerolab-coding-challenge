@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { Vars, Device } from "../../styles/Variables";
+import { Device } from "../../styles/Variables";
 
 const fadeInNav = keyframes`
   to {
