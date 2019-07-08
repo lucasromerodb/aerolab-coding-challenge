@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { Vars } from "../../styles/Variables";
+import { Vars, Device } from "../../styles/Variables";
 
 const fadeInNav = keyframes`
   to {
@@ -8,8 +8,6 @@ const fadeInNav = keyframes`
 `;
 
 export const Nav = styled.nav`
-  position: relative;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,31 +16,9 @@ export const Nav = styled.nav`
   opacity: 0;
 
   animation: ${fadeInNav} 0.8s ease 0.3s forwards;
-`;
 
-export const NavLinks = styled.ul`
-  a {
-    display: block;
-    padding: 10px 15px;
-
-    font-size: 1.1rem;
-    color: ${Vars.color.black};
-
-    transition: color 0.2 ease;
-
-    :hover {
-      color: ${Vars.color.primary};
-    }
-  }
-
-  .itemNav {
-    margin-right: 10px;
-    background: red;
-
-    :last-child {
-      background: blue;
-      margin-right: 40px;
-    }
+  @media ${Device.laptop} {
+    position: relative;
   }
 `;
 
@@ -56,10 +32,14 @@ export const BuyPointsWrapper = styled.div`
 export const Header = styled.header`
   position: relative;
   z-index: 99;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+
+  @media ${Device.tablet} {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
 `;

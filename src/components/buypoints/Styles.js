@@ -1,12 +1,18 @@
 import styled, { keyframes } from "styled-components";
 import { transparentize } from "polished";
-import { Vars } from "../../styles/Variables";
+import { Vars, Device } from "../../styles/Variables";
 
 import { ButtonGroup, Button } from "../../styles/Button";
 
 const openBuyBox = keyframes`
   to {
     transform: scale(1);
+    opacity: 1;
+  }
+`;
+const openBuyBoxMobile = keyframes`
+  to {
+    transform: translateY(0);
     opacity: 1;
   }
 `;
@@ -19,13 +25,26 @@ export const BuyBox = styled.div`
   box-sizing: border-box;
   padding: 15px;
   background-color: ${Vars.color.white};
-  border-radius: ${Vars.radius.md};
   box-shadow: 0 25px 25px -10px ${transparentize(0.8, Vars.color.black)};
 
   opacity: 0;
   transform-origin: top right;
-  transform: scale(0);
-  animation: ${openBuyBox} 0.2s ease forwards;
+
+  @media ${Device.movileS} {
+    width: 100vw;
+    border-radius: 0 0 ${Vars.radius.md} ${Vars.radius.md};
+
+    transform: translateY(-100%);
+    animation: ${openBuyBoxMobile} 0.3s ease forwards;
+  }
+
+  @media ${Device.tablet} {
+    width: auto;
+    border-radius: ${Vars.radius.md};
+
+    transform: scale(0);
+    animation: ${openBuyBox} 0.2s ease forwards;
+  }
 `;
 
 export const BuyButtons = styled(ButtonGroup)`

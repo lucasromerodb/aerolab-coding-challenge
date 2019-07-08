@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Vars } from "../../styles/Variables";
+import { Vars, Device } from "../../styles/Variables";
 
 export const NavLinks = styled.ul`
   display: flex;
@@ -24,5 +24,20 @@ export const NavLinks = styled.ul`
     :hover {
       color: ${Vars.color.primary};
     }
+  }
+
+  @media ${Device.mobileS} {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: ${Vars.color.white};
+    width: 100%;
+  }
+
+  @media ${Device.laptop} {
+    position: relative;
+    width: auto;
+    background-color: transparent;
   }
 `;

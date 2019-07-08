@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { transparentize } from "polished";
 
-import { Vars } from "../../styles/Variables";
+import { Vars, Device } from "../../styles/Variables";
 import { Button } from "../../styles/Button";
 
 const BouncingNotification = keyframes`
@@ -11,8 +11,15 @@ const BouncingNotification = keyframes`
 `;
 
 export const BuyMore = styled.span`
-  margin-left: 20px;
   color: ${transparentize(0.8, Vars.color.black)};
+
+  @media ${Device.mobileS} {
+    margin-left: 10px;
+  }
+
+  @media ${Device.tablet} {
+    margin-left: 20px;
+  }
 `;
 
 export const Notification = styled.span`
@@ -42,7 +49,13 @@ export const UserPoints = styled.strong`
   flex-direction: row;
   align-items: center;
 
-  font-size: 1.2rem;
+  @media ${Device.mobileS} {
+    font-size: 1rem;
+  }
+
+  @media ${Device.laptop} {
+    font-size: 1.2rem;
+  }
 `;
 
 export const PointsButton = styled(Button)`
@@ -54,5 +67,15 @@ export const PointsButton = styled(Button)`
   .icon {
     width: 25px;
     margin-left: 10px;
+  }
+
+  @media ${Device.mobileS} {
+    padding: 0.5rem 0.8rem;
+    border-radius: ${Vars.radius.sm};
+  }
+
+  @media ${Device.tablet} {
+    padding: 1rem;
+    border-radius: ${Vars.radius.md};
   }
 `;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { linearGradient } from "polished";
-import { Vars } from "../../styles/Variables";
+import { Vars, Device } from "../../styles/Variables";
 import pattern from "../../assets/aeropay-pattern.svg";
 
 export const Pattern = styled.div`
@@ -50,6 +50,7 @@ export const AeroBadge = styled.div`
   overflow: hidden;
 
   img {
+    width: 32px;
     max-height: 100%;
   }
 
