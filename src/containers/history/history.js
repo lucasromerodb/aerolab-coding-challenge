@@ -14,7 +14,7 @@ function History({ history, redeemMsg, user, onGetHistory }) {
     onGetHistory();
   }, [onGetHistory, redeemMsg]);
 
-  function scroll() {
+  function scrollTop() {
     window.scrollTo({
       behavior: "smooth",
       top: 0
@@ -27,7 +27,7 @@ function History({ history, redeemMsg, user, onGetHistory }) {
         ? history.map((p, i) => <ProductAlt key={p.createDate} {...p} index={i} />)
         : ""}
       {history.length && user.name.length ? (
-        <GoTop small primary onClick={scroll}>
+        <GoTop small primary onClick={scrollTop}>
           Back to top
         </GoTop>
       ) : (
