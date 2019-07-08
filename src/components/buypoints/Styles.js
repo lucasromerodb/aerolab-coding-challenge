@@ -43,7 +43,7 @@ export const BuyBox = styled.div`
     border-radius: ${Vars.radius.md};
 
     transform: scale(0);
-    animation: ${openBuyBox} 0.2s ease forwards;
+    animation: ${openBuyBox} 0.2s ease 0.1s forwards;
   }
 `;
 
