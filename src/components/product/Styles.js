@@ -79,7 +79,7 @@ export const ProductBox = styled.section`
   box-sizing: border-box;
   background-color: ${Vars.color.white};
 
-  transition: 0.3s ease-out 0s;
+  transition: box-shadow 0.3s ease-out 0s;
 
   ${RedeemButton} {
     margin-top: 15px;

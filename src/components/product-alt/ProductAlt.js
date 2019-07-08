@@ -1,15 +1,31 @@
 import React from "react";
+import moment from "moment";
 
-function ProductAlt({ _id, productId, name, cost, category, img }) {
+import coin from "../../assets/coin.svg";
+import { ProductBox, Picture, InfoGroup, Group, Coin } from "./Styles";
+
+function ProductAlt({ _id, name, cost, category, img, createDate, index }) {
   return (
-    <section>
-      {/* <img src={img.url} alt={name} /> */}
-      <h1>{name}</h1>
-      <span>id: {_id}</span>
-      <span>productId: {productId}</span>
-      {/* <small>{_id}</small> */}
-      {/* <h2>$ {cost}</h2> */}
-    </section>
+    <ProductBox index={index}>
+      <Picture src={img.url} alt={name} />
+      <Group>
+        <InfoGroup>
+          <div>{category}</div>
+          <span>{name}</span>
+        </InfoGroup>
+        <InfoGroup>
+          <div>Rdeemed on</div>
+          <span>{moment(createDate).format("MMMM Do YYYY, h:mm:ss a")}</span>
+        </InfoGroup>
+        <InfoGroup>
+          <div>Transaction ID</div>
+          <span>{_id}</span>
+        </InfoGroup>
+      </Group>
+      <Coin>
+        {cost} <img src={coin} alt="Coin icon" className="icon" />
+      </Coin>
+    </ProductBox>
   );
 }
 

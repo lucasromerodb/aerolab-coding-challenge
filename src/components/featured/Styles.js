@@ -40,7 +40,7 @@ export const FeaturedBox = styled.section`
   border-radius: ${Vars.radius.md};
 
   transform-origin: top left;
-  transform: translateY(10px) rotate(0.7deg);
+  transform: translateY(10px) rotate(0.5deg);
   opacity: 0;
   overflow: hidden;
 

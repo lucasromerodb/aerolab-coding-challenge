@@ -59,7 +59,8 @@ function* watcherUser() {
 function* historySaga() {
   try {
     const history = yield call(getUserHistory);
-    yield put(historyCallSuccess(history));
+    const sortedHistory = sortArrBy(history, "desc", "createDate");
+    yield put(historyCallSuccess(sortedHistory));
   } catch (error) {
     yield put(historyCallFailure(error));
   }

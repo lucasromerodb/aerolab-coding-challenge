@@ -2,7 +2,17 @@ import React from "react";
 
 import { Button, ButtonGroup, ButtonGroupWrapper } from "../../styles/Button";
 
-function Pagination({ pages, currentPage, setCurrentPage }) {
+function Pagination({ pages, currentPage, setCurrentPage, currentRef }) {
+  function xx(page) {
+    setCurrentPage(page);
+    if (currentRef) {
+      window.scrollTo({
+        behavior: "smooth",
+        top: currentRef.offsetTop - 25
+      });
+    }
+  }
+
   return (
     <ButtonGroupWrapper>
       <span>Page</span>
@@ -15,7 +25,7 @@ function Pagination({ pages, currentPage, setCurrentPage }) {
                   small={true}
                   key={`page_${page}`}
                   disabled={page === currentPage}
-                  onClick={() => setCurrentPage(page)}
+                  onClick={() => xx(page)}
                 >
                   {page}
                 </Button>
