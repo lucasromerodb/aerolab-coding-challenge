@@ -17,7 +17,7 @@ export const Nav = styled.nav`
 
   animation: ${fadeInNav} 0.8s ease 0.3s forwards;
 
-  @media ${Device.laptop} {
+  @media ${Device.tablet} {
     position: relative;
   }
 `;

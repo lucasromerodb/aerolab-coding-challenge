@@ -1,15 +1,6 @@
 import styled from "styled-components";
 import { transparentize } from "polished";
 import { Vars, Device } from "../../styles/Variables";
-import { GithubAlt } from "styled-icons/fa-brands/GithubAlt";
-
-// export const GitHubIcon = styled(GithubAlt)`
-//   color: black;
-// `;
-
-// export const ProductsIcon = styled(GithubAlt)`
-//   color: black;
-// `;
 
 export const NavLinks = styled.ul`
   position: fixed;
@@ -26,8 +17,6 @@ export const NavLinks = styled.ul`
   padding: 0;
   margin-right: 30px;
 
-  /* border-radius: ${Vars.radius.sm} ${Vars.radius.sm} 0 0; */
-
   background-color: ${Vars.color.white};
   box-shadow: 0 -3px 5px ${transparentize(0.8, Vars.color.black)};
 
@@ -38,7 +27,6 @@ export const NavLinks = styled.ul`
     width: auto;
     background-color: transparent;
     box-shadow: none;
-    /* border-radius: 0; */
   }
 
   li {
@@ -80,7 +68,6 @@ export const NavLinks = styled.ul`
       padding-right: 20px;
 
       font-size: 1rem;
-
 
       @media ${Device.tablet} {
         height: 30px;
