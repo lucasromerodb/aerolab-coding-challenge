@@ -20,6 +20,10 @@ export const BuyMore = styled.span`
   @media ${Device.tablet} {
     margin-left: 20px;
   }
+
+  @media (max-width: 320px) {
+    display: none;
+  }
 `;
 
 export const Notification = styled.span`

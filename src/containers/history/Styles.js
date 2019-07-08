@@ -4,7 +4,8 @@ import { Device } from "../../styles/Variables";
 
 const fadeInGoTop = keyframes`
   to {
-    transform: translateY(0) scaleX(1)
+    transform: translateY(0) scaleX(1);
+    opacity: 1;
   }
 `;
 
@@ -22,6 +23,7 @@ export const GoTop = styled(Button)`
 
   font-size: 0.8rem;
 
+  opacity: 0;
   animation: ${fadeInGoTop} 0.3s ease 1s forwards;
 
   @media ${Device.tablet} {

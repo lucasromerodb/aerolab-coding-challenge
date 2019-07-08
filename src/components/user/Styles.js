@@ -56,7 +56,9 @@ export const Logo = styled.div`
 `;
 
 export const UserName = styled.h1`
-  @media ${Device.mobileS} {
+  font-size: 1rem;
+
+  @media ${Device.mobileM} {
     font-size: 1.2rem;
   }
   @media ${Device.tablet} {
