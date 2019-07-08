@@ -15,7 +15,7 @@ const fadeInName = keyframes`
   }
 `;
 
-const logoHMobile = 40;
+const logoHMobile = 50;
 const logoHLaptop = 80;
 
 export const Logo = styled.div`

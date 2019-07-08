@@ -31,8 +31,8 @@ export const Notification = styled.span`
     `}
 
   position: absolute;
-  right: -4px;
-  top: -4px;
+  right: 0px;
+  top: -5px;
 
   display: block;
   width: 15px;
