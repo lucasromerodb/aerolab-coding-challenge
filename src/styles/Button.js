@@ -129,6 +129,16 @@ export const ButtonGroupWrapper = styled.div`
         }
       }
     `}
+
+  ${({ fullGroup }) =>
+    fullGroup &&
+    css`
+      @media (max-width: 767px) {
+        ${Button}, ${ButtonGroup} {
+          width: 100%;
+        }
+      }
+    `}
 `;
 
 export const ButtonGroup = styled.div`

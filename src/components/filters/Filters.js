@@ -18,7 +18,7 @@ function Filters({ onSortProducts }) {
   }
 
   return (
-    <ButtonGroupWrapper hideLabels>
+    <ButtonGroupWrapper hideLabels fullGroup>
       <span>Sort by</span>
       <ButtonGroup>
         {sortItems.map(i => (

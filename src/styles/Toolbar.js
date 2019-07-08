@@ -7,8 +7,12 @@ export const Toolbar = styled.div`
   justify-content: flex-end;
   align-items: flex-end;
 
+  width: 100%;
+
   margin-top: 15px;
   margin-bottom: 10px;
+
+
 
   ${({ single }) =>
     single &&
@@ -33,6 +37,8 @@ export const Toolbar = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    width: auto;
 
     margin-top: 30px;
     margin-bottom: 30px;
