@@ -10,6 +10,7 @@ const USER_CALL_FAILURE = `${PROJECT_NAME}${duck}/USER_CALL_FAILURE`;
 const POINTS_CALL_REQUEST = `${PROJECT_NAME}${duck}/POINTS_CALL_REQUEST`;
 const POINTS_CALL_SUCCESS = `${PROJECT_NAME}${duck}/POINTS_CALL_SUCCESS`;
 const POINTS_CALL_FAILURE = `${PROJECT_NAME}${duck}/POINTS_CALL_FAILURE`;
+const RESET_POINTS_MSG = `${PROJECT_NAME}${duck}/RESET_POINTS_MSG`;
 
 /* === TYPES === */
 
@@ -19,7 +20,8 @@ export const types = {
   USER_CALL_FAILURE,
   POINTS_CALL_REQUEST,
   POINTS_CALL_SUCCESS,
-  POINTS_CALL_FAILURE
+  POINTS_CALL_FAILURE,
+  RESET_POINTS_MSG
 };
 
 /* === ACTION CREATORS === */
@@ -51,6 +53,10 @@ export const pointsCallSuccess = ({ message, error }) => ({
 export const pointsCallFailure = ({ error }) => ({
   type: types.POINTS_CALL_FAILURE,
   error: error || "We have some problems posting points"
+});
+
+export const resetPointsMsg = () => ({
+  type: types.RESET_POINTS_MSG
 });
 
 /* === SELECTORS === */
@@ -95,6 +101,9 @@ function userReducer(state = initialState, action = {}) {
 
     case types.POINTS_CALL_FAILURE:
       return { ...state, adding: false, amount: 0, pointsMsg: action.error };
+
+    case types.RESET_REDEEM_MSG:
+      return { ...state, pointsMsg: null };
 
     default:
       return state;
