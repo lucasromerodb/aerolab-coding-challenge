@@ -3,7 +3,7 @@ import { Button } from "../../styles/Button";
 
 const fadeInGoTop = keyframes`
   to {
-    transform: translateY(0)
+    transform: translateY(0) scaleX(1)
   }
 `;
 
@@ -17,7 +17,7 @@ export const GoTop = styled(Button)`
   justify-content: center;
 
   padding: 7px 14px;
-  transform: translateY(40px) scaleX(0);
+  transform: translateY(40px) scaleX(0.8);
 
   font-size: 0.8rem;
 
