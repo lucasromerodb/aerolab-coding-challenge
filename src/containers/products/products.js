@@ -21,7 +21,7 @@ import Featured from "../../components/featured";
 
 import { sliceArr, pageNumbers } from "../../utils";
 import { Toolbar } from "../../styles/Toolbar";
-import { List, ProductsList } from "./Styles";
+import { List, ProductsList, PaginationInfo } from "./Styles";
 
 function Products({
   fetching,
@@ -42,6 +42,9 @@ function Products({
   const [productsPerPage] = useState(16);
   const pages = pageNumbers(products, productsPerPage);
   let productsRef = useRef();
+
+  const pageInfo = `${currentPage * productsPerPage - productsPerPage + 1} - ${currentPage *
+    productsPerPage} of ${products.length} products`;
 
   function findItem() {
     const item = "5a0b35d7734d1d08bf7084c9"; // Nintendo Switch
@@ -80,6 +83,7 @@ function Products({
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
                 currentRef={productsRef.current}
+                pageInfo={pageInfo}
               />
             </Toolbar>
             <p>{redeemMsg}</p>
@@ -101,14 +105,13 @@ function Products({
                   })
                 : ""}
             </ProductsList>
-            <Toolbar>
-              {currentPage * productsPerPage - productsPerPage + 1} -{" "}
-              {currentPage * productsPerPage} of {products.length} products
+            <Toolbar single>
               <Pagination
                 pages={pages}
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
                 currentRef={productsRef.current}
+                pageInfo={pageInfo}
               />
             </Toolbar>
           </List>

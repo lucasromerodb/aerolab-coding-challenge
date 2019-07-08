@@ -66,6 +66,7 @@ export const ProductRdeemed = styled.i`
   font-size: 0.7rem;
   font-weight: 400;
   color: ${Vars.color.base.alt};
+
   ${({ times }) =>
     times === 0 &&
     css`
@@ -78,6 +79,7 @@ export const ProductBox = styled.section`
 
   box-sizing: border-box;
   background-color: ${Vars.color.white};
+  border-radius: ${Vars.radius.md};
 
   transition: box-shadow 0.3s ease-out 0s;
 
@@ -85,12 +87,7 @@ export const ProductBox = styled.section`
     margin-top: 15px;
   }
 
-  @media ${Device.mobileS} {
-    border-bottom: 1px solid ${transparentize(0.5, Vars.color.base.alt)};
-  }
-
   @media ${Device.tablet} {
-    border-radius: ${Vars.radius.md};
     :hover {
       z-index: 1;
       box-shadow: 0 25px 25px -10px ${Vars.color.base.alt};

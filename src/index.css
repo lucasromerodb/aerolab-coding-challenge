@@ -11,14 +11,24 @@ body {
   margin: 0;
   box-sizing: border-box;
 
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 80px;
+
   font-family: "Montserrat", sans-serif;
   background-image: url("./assets/pattern.svg");
   background-position: center -140px;
   background-repeat: repeat-x;
   background-size: 500px;
-  margin-bottom: 80px;
 }
 
 a {
   text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }

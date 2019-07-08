@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { transparentize } from "polished";
 
-import { Vars } from "./Variables";
+import { Vars, Device } from "./Variables";
 
 export const Button = styled.button`
   display: flex;
@@ -106,6 +106,7 @@ export const ButtonGroupWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
 
   padding-top: 3px;
   padding-bottom: 3px;
@@ -116,6 +117,18 @@ export const ButtonGroupWrapper = styled.div`
       margin-right: 15px;
     }
   }
+
+  ${({ hideLabels }) =>
+    hideLabels &&
+    css`
+      @media (max-width: 767px) {
+        > * {
+          :nth-child(1) {
+            display: none;
+          }
+        }
+      }
+    `}
 `;
 
 export const ButtonGroup = styled.div`

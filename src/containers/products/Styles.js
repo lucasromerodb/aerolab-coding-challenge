@@ -17,12 +17,12 @@ export const List = styled.div`
 export const ProductsList = styled.section`
   display: grid;
   place-items: start;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   grid-column-gap: 20px;
 
   @media ${Device.mobileS} {
     grid-template-columns: 1fr;
-    grid-row-gap: 0;
+    grid-row-gap: 15px;
   }
 
   @media ${Device.tablet} {
@@ -37,4 +37,10 @@ export const ProductsList = styled.section`
   @media ${Device.laptopL} {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+`;
+
+export const PaginationInfo = styled.span`
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;

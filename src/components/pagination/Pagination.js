@@ -2,20 +2,20 @@ import React from "react";
 
 import { Button, ButtonGroup, ButtonGroupWrapper } from "../../styles/Button";
 
-function Pagination({ pages, currentPage, setCurrentPage, currentRef }) {
+function Pagination({ pages, currentPage, setCurrentPage, currentRef, pageInfo }) {
   function xx(page) {
     setCurrentPage(page);
     if (currentRef) {
       window.scrollTo({
         behavior: "smooth",
-        top: currentRef.offsetTop - 25
+        top: currentRef.offsetTop - 15
       });
     }
   }
 
   return (
     <ButtonGroupWrapper>
-      <span>Page</span>
+      <span>{pageInfo ? pageInfo : "Pages"}</span>
       <ButtonGroup>
         {pages && pages.length > 1
           ? pages.map(i => {
