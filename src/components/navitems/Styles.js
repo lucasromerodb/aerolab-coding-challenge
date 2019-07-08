@@ -31,7 +31,7 @@ export const NavLinks = styled.ul`
   background-color: ${Vars.color.white};
   box-shadow: 0 -3px 5px ${transparentize(0.8, Vars.color.black)};
 
-  @media ${Device.laptop} {
+  @media ${Device.tablet} {
     position: relative;
     justify-content: flex-start;
 
@@ -81,6 +81,12 @@ export const NavLinks = styled.ul`
 
       font-size: 1rem;
 
+
+      @media ${Device.tablet} {
+        height: 30px;
+        padding-left: 0;
+        padding-right: 0;
+      }
 
       @media ${Device.laptop} {
         display: none;
