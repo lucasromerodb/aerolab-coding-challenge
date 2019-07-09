@@ -12,6 +12,7 @@ const REDEEM_CALL_SUCCESS = `${PROJECT_NAME}${duck}/REDEEM_CALL_SUCCESS`;
 const REDEEM_CALL_FAILURE = `${PROJECT_NAME}${duck}/REDEEM_CALL_FAILURE`;
 const SORT_PRODUCTS = `${PROJECT_NAME}${duck}/SORT_PRODUCTS`;
 const RESET_REDEEM_MSG = `${PROJECT_NAME}${duck}/RESET_REDEEM_MSG`;
+const SET_CURRENT_PAGE = `${PROJECT_NAME}${duck}/SET_CURRENT_PAGE`;
 
 /* === TYPES === */
 
@@ -23,7 +24,8 @@ export const types = {
   REDEEM_CALL_SUCCESS,
   REDEEM_CALL_FAILURE,
   SORT_PRODUCTS,
-  RESET_REDEEM_MSG
+  RESET_REDEEM_MSG,
+  SET_CURRENT_PAGE
 };
 
 /* === ACTION CREATORS === */
@@ -66,6 +68,11 @@ export const resetRedeemMsg = () => ({
   type: types.RESET_REDEEM_MSG
 });
 
+export const setCurrentPage = page => ({
+  type: types.SET_CURRENT_PAGE,
+  page
+});
+
 /* === SELECTORS === */
 
 export const selectProducts = store => store.products.products;
@@ -75,6 +82,7 @@ export const selectPosting = store => store.products.posting;
 export const selectRedeemId = store => store.products.redeemId;
 export const selectRedeemMsg = store => store.products.redeemMsg;
 export const selectSortBy = store => store.products.sortBy;
+export const selectCurrentPage = store => store.products.currentPage;
 
 /* === REDUCER === */
 
@@ -85,7 +93,8 @@ const initialState = {
   posting: false,
   redeemId: null,
   redeemMsg: null,
-  sortBy: "time"
+  sortBy: "time",
+  currentPage: 1
 };
 
 function productsReducer(state = initialState, action = {}) {
@@ -113,6 +122,9 @@ function productsReducer(state = initialState, action = {}) {
 
     case types.RESET_REDEEM_MSG:
       return { ...state, redeemMsg: null };
+
+    case types.SET_CURRENT_PAGE:
+      return { ...state, currentPage: action.page };
 
     default:
       return state;

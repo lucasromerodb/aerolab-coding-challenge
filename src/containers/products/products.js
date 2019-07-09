@@ -5,13 +5,15 @@ import {
   productsCallRequest,
   redeemCallRequest,
   sortProducts,
+  resetRedeemMsg,
+  setCurrentPage,
   selectFetching,
   selectProducts,
   selectPosting,
   selectRedeemMsg,
   selectSortBy,
   selectRedeemId,
-  resetRedeemMsg
+  selectCurrentPage
 } from "../../ducks/productsDuck";
 import { selectUserPoints, selectUserRedeemHistory, selectUser } from "../../ducks/userDuck";
 
@@ -35,13 +37,14 @@ function Products({
   userPoints,
   userHistory,
   user,
+  currentPage,
   onRequestProducts,
   onRequestRedeem,
   onSortProducts,
-  onResetRedeemMsg
+  onResetRedeemMsg,
+  onSetCurrentPage
 }) {
   const [prods, setProds] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(16);
   const pages = pageNumbers(products, productsPerPage);
   let productsRef = useRef();
@@ -86,7 +89,7 @@ function Products({
               <Filters onSortProducts={onSortProducts} />
               <Pagination
                 pages={pages}
-                setCurrentPage={setCurrentPage}
+                onSetCurrentPage={onSetCurrentPage}
                 currentPage={currentPage}
                 currentRef={productsRef.current}
                 pageInfo={pageInfo}
@@ -113,7 +116,7 @@ function Products({
             <Toolbar single>
               <Pagination
                 pages={pages}
-                setCurrentPage={setCurrentPage}
+                onSetCurrentPage={onSetCurrentPage}
                 currentPage={currentPage}
                 currentRef={productsRef.current}
                 pageInfo={pageInfo}
@@ -137,14 +140,16 @@ const mapStateToProps = store => ({
   sortBy: selectSortBy(store),
   userPoints: selectUserPoints(store),
   userHistory: selectUserRedeemHistory(store),
-  user: selectUser(store)
+  user: selectUser(store),
+  currentPage: selectCurrentPage(store)
 });
 
 const mapDispatchToProps = dispatch => ({
   onRequestProducts: () => dispatch(productsCallRequest()),
   onRequestRedeem: productId => dispatch(redeemCallRequest(productId)),
   onSortProducts: direction => dispatch(sortProducts(direction)),
-  onResetRedeemMsg: () => dispatch(resetRedeemMsg())
+  onResetRedeemMsg: () => dispatch(resetRedeemMsg()),
+  onSetCurrentPage: page => dispatch(setCurrentPage(page))
 });
 
 export default connect(

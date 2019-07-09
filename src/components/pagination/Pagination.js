@@ -2,9 +2,9 @@ import React from "react";
 
 import { Button, ButtonGroup, ButtonGroupWrapper } from "../../styles/Button";
 
-function Pagination({ pages, currentPage, setCurrentPage, currentRef, pageInfo }) {
+function Pagination({ pages, currentPage, onSetCurrentPage, currentRef, pageInfo }) {
   function xx(page) {
-    setCurrentPage(page);
+    onSetCurrentPage(page);
     if (currentRef) {
       window.scrollTo({
         behavior: "smooth",
