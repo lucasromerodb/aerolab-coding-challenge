@@ -2,6 +2,12 @@
 
 ### [DEMO »](https://lucasromerodb.github.io/aerolab-coding-challenge/)
 
+![Devices](docs/devices.png)
+![History & Social](docs/history-social.png)
+![Design](docs/design.png)
+
+## Challenge info
+
 - [Challenge »](https://aerolab.co/coding-challenge-instructions?utm_campaign=Coding%20Challenge)
 - [API »](https://aerolabchallenge.docs.apiary.io/#reference/0/products/get)
 
@@ -23,7 +29,7 @@
 - Keyboard navigation
 - Social metadata
 
-## Stack
+## Tech Stack
 
 - `create-react-app` for project starting
 - `redux` and `redux-saga` for global state managing
