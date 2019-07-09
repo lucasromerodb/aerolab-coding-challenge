@@ -26,6 +26,7 @@ import { sliceArr, pageNumbers } from "../../utils";
 import { Toolbar } from "../../styles/Toolbar";
 import { List, ProductsList } from "./Styles";
 import Alert from "../../components/alert";
+import Empty from "../../components/empty";
 
 function Products({
   posting,
@@ -79,7 +80,7 @@ function Products({
           />
         </>
       ) : (
-        ""
+        <Empty>There are no products to display</Empty>
       )}
       <div ref={productsRef}>
         {user.name.length && products.length ? (

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import { connect } from "react-redux";
 
 import { historyCallRequest, selectHistory } from "../../ducks/historyDuck";
@@ -8,6 +7,7 @@ import { selectUser } from "../../ducks/userDuck";
 
 import ProductAlt from "../../components/product-alt";
 import { GoTop, HistoryList } from "./Styles";
+import Empty from "../../components/empty";
 
 function History({ history, redeemMsg, user, onGetHistory }) {
   useEffect(() => {
@@ -31,7 +31,7 @@ function History({ history, redeemMsg, user, onGetHistory }) {
           Back to top
         </GoTop>
       ) : (
-        ""
+        <Empty>It seems that you have not redeemed any product yet</Empty>
       )}
     </HistoryList>
   );
