@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Button, ButtonGroup, ButtonGroupWrapper } from "../../styles/Button";
 
@@ -8,14 +8,18 @@ const sortItems = [
   { by: "desc", text: "Highest price" }
 ];
 
-function Filters({ onSortProducts }) {
-  const [sort, setSort] = useState("time");
+function Filters({ sortBy, onSortProducts }) {
+  const [sort, setSort] = useState();
 
   function onSort(e) {
     const id = e.target.id;
     onSortProducts(id);
     setSort(id);
   }
+
+  useEffect(() => {
+    setSort(sortBy);
+  }, [sortBy]);
 
   return (
     <ButtonGroupWrapper hideLabels fullGroup>

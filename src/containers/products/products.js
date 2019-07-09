@@ -28,7 +28,6 @@ import { List, ProductsList } from "./Styles";
 import Alert from "../../components/alert";
 
 function Products({
-  fetching,
   posting,
   products,
   redeemId,
@@ -47,7 +46,7 @@ function Products({
   const [prods, setProds] = useState([]);
   const [productsPerPage] = useState(16);
   const pages = pageNumbers(products, productsPerPage);
-  let productsRef = useRef();
+  const productsRef = useRef();
 
   const pageInfo = `${currentPage * productsPerPage - productsPerPage + 1} - ${currentPage *
     productsPerPage} of ${products.length} products`;
@@ -86,7 +85,7 @@ function Products({
         {user.name.length && products.length ? (
           <List>
             <Toolbar>
-              <Filters onSortProducts={onSortProducts} />
+              <Filters onSortProducts={onSortProducts} sortBy={sortBy} />
               <Pagination
                 pages={pages}
                 onSetCurrentPage={onSetCurrentPage}
