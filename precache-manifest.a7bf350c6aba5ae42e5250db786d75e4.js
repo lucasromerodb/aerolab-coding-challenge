@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "12f24cb90d8eb5d28ac609234f82521f",
+    "revision": "a55b1530bbfbc1a6b924674e8aa51112",
     "url": "/aerolab-coding-challenge/index.html"
   },
   {
-    "revision": "54c6a90cc36597f3f309",
+    "revision": "bfea821f59a130f0efc2",
     "url": "/aerolab-coding-challenge/static/css/main.98cc1aaa.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/aerolab-coding-challenge/static/js/2.248b3405.chunk.js"
   },
   {
-    "revision": "54c6a90cc36597f3f309",
-    "url": "/aerolab-coding-challenge/static/js/main.a586d8dd.chunk.js"
+    "revision": "bfea821f59a130f0efc2",
+    "url": "/aerolab-coding-challenge/static/js/main.17bcf1fe.chunk.js"
   },
   {
     "revision": "10c35e51c216f3b5304b",
