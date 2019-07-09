@@ -102,7 +102,7 @@ function userReducer(state = initialState, action = {}) {
     case types.POINTS_CALL_FAILURE:
       return { ...state, adding: false, amount: 0, pointsMsg: action.error };
 
-    case types.RESET_REDEEM_MSG:
+    case types.RESET_POINTS_MSG:
       return { ...state, pointsMsg: null };
 
     default:

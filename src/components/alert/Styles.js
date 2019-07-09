@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import { transparentize } from "polished";
 import { Vars, Device } from "../../styles/Variables";
 
 const fadeInAlertBox = keyframes`
@@ -38,7 +37,7 @@ export const AlertBox = styled.span`
   box-sizing: border-box;
   padding: 10px 10px;
 
-  background-color: ${transparentize(0.1, Vars.color.black)};
+  background-color: ${Vars.color.black};
   transform-origin: bottom center;
 
   color: ${Vars.color.warning};

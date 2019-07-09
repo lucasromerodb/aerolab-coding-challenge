@@ -25,7 +25,7 @@ function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints, onRese
 
   useEffect(() => {
     onGetUser();
-  }, [pointsMsg, redeemMsg, onGetUser]);
+  }, [pointsMsg, redeemMsg, onGetUser, onResetPointsMsg]);
 
   return (
     <Header>
