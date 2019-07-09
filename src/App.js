@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 
 import Products from "./containers/products/";
 import Navigation from "./containers/navigation";
@@ -9,14 +9,14 @@ import { Wrapper } from "./styles/Mixins";
 
 function App() {
   return (
-    <Router basename="/aerolab-coding-challenge/">
+    <HashRouter>
       <Wrapper>
         <Navigation />
-
         <Route path="/" exact component={Products} />
         <Route path="/history" component={History} />
+        <Route component={Products} />
       </Wrapper>
-    </Router>
+    </HashRouter>
   );
 }
 
