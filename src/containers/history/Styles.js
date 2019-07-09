@@ -35,5 +35,5 @@ export const GoTop = styled(Button)`
 `;
 
 export const HistoryList = styled.section`
-  margin-bottom: 50px;
+  padding-bottom: 30px;
 `;

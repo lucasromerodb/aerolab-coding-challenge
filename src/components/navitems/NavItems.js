@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { NavLinks } from "./Styles";
 import { Github } from "styled-icons/boxicons-logos/Github";
@@ -24,16 +24,27 @@ function NavItems() {
         </a>
       </li>
       <li>
-        <Link to="/" onClick={scrollTop}>
+        <NavLink
+          exact
+          to="/"
+          onClick={scrollTop}
+          className="navLink"
+          activeClassName="activeNavLink"
+        >
           <span className="navText">Products</span>
           <Grid className="navIcon" />
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link to="/history" onClick={scrollTop}>
+        <NavLink
+          to="/history"
+          onClick={scrollTop}
+          className="navLink"
+          activeClassName="activeNavLink"
+        >
           <span className="navText">Redeem History</span>
           <History className="navIcon" />
-        </Link>
+        </NavLink>
       </li>
     </NavLinks>
   );

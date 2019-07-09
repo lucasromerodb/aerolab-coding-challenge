@@ -29,6 +29,10 @@ export const NavLinks = styled.ul`
     box-shadow: none;
   }
 
+  .activeNavLink {
+    color: ${Vars.color.primary};
+  }
+
   li {
     list-style: none;
     margin: 0;

@@ -44,7 +44,7 @@ export const AlertBox = styled.span`
   text-align: center;
   font-size: 0.9rem;
 
-  animation: ${fadeInAlertBoxMobile} 0.3s ease forwards;
+  animation: ${fadeInAlertBoxMobile} 0.7s ease forwards;
 
   @media ${Device.tablet} {
     left: 50%;

@@ -9,9 +9,10 @@ import { Wrapper } from "./styles/Mixins";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/aerolab-coding-challenge/">
       <Wrapper>
         <Navigation />
+
         <Route path="/" exact component={Products} />
         <Route path="/history" component={History} />
       </Wrapper>
