@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/aerolab-coding-challenge/precache-manifest.0a5ad0715e5fcd46d2d1e0adccb28a24.js"
+  "/aerolab-coding-challenge/precache-manifest.0ce8db67da0267b075fd2093b3597dca.js"
 );
 
 self.addEventListener('message', (event) => {
