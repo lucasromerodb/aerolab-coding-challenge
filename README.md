@@ -32,7 +32,7 @@
 ## Tech Stack
 
 - `create-react-app` for project starting
-- `redux` and `redux-saga` for global state managing
+- `redux` and `redux-saga` for global state and side effects management
 - `react-router` for app routing
 - `styled-components` for component styling (extended with `polished`)
 - `styled-icons` for add icons to the app
