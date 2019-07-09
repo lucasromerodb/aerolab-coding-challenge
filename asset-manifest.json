@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/aerolab-coding-challenge/static/css/main.98cc1aaa.chunk.css",
-    "main.js": "/aerolab-coding-challenge/static/js/main.1b2ddff5.chunk.js",
-    "main.js.map": "/aerolab-coding-challenge/static/js/main.1b2ddff5.chunk.js.map",
+    "main.js": "/aerolab-coding-challenge/static/js/main.9b1f5af5.chunk.js",
+    "main.js.map": "/aerolab-coding-challenge/static/js/main.9b1f5af5.chunk.js.map",
     "runtime~main.js": "/aerolab-coding-challenge/static/js/runtime~main.6a6b5940.js",
     "runtime~main.js.map": "/aerolab-coding-challenge/static/js/runtime~main.6a6b5940.js.map",
     "static/js/2.e9043dc4.chunk.js": "/aerolab-coding-challenge/static/js/2.e9043dc4.chunk.js",
     "static/js/2.e9043dc4.chunk.js.map": "/aerolab-coding-challenge/static/js/2.e9043dc4.chunk.js.map",
     "index.html": "/aerolab-coding-challenge/index.html",
-    "precache-manifest.7747beff4c3271b2ccf6a753ec4a0f87.js": "/aerolab-coding-challenge/precache-manifest.7747beff4c3271b2ccf6a753ec4a0f87.js",
+    "precache-manifest.389cebd3bfb18ac045423119b214b7cc.js": "/aerolab-coding-challenge/precache-manifest.389cebd3bfb18ac045423119b214b7cc.js",
     "service-worker.js": "/aerolab-coding-challenge/service-worker.js",
     "static/css/main.98cc1aaa.chunk.css.map": "/aerolab-coding-challenge/static/css/main.98cc1aaa.chunk.css.map",
     "static/media/aerolab-logo.svg": "/aerolab-coding-challenge/static/media/aerolab-logo.c6da2094.svg",
