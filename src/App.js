@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Route } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 
 import Products from "./containers/products/";
 import Navigation from "./containers/navigation";
@@ -9,14 +9,16 @@ import { Wrapper } from "./styles/Mixins";
 
 function App() {
   return (
-    <HashRouter>
-      <Wrapper>
+    <Wrapper>
+      <HashRouter>
         <Navigation />
-        <Route path="/" exact component={Products} />
-        <Route path="/history" component={History} />
-        <Route component={Products} />
-      </Wrapper>
-    </HashRouter>
+        <Switch>
+          <Route path="/" exact component={Products} />
+          <Route path="/history" component={History} />
+          <Route component={Products} />
+        </Switch>
+      </HashRouter>
+    </Wrapper>
   );
 }
 
