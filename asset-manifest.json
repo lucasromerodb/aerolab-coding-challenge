@@ -1,22 +1,23 @@
 {
   "files": {
     "main.css": "/aerolab-coding-challenge/static/css/main.98cc1aaa.chunk.css",
-    "main.js": "/aerolab-coding-challenge/static/js/main.2e42860c.chunk.js",
-    "main.js.map": "/aerolab-coding-challenge/static/js/main.2e42860c.chunk.js.map",
+    "main.js": "/aerolab-coding-challenge/static/js/main.daec88fa.chunk.js",
+    "main.js.map": "/aerolab-coding-challenge/static/js/main.daec88fa.chunk.js.map",
     "runtime~main.js": "/aerolab-coding-challenge/static/js/runtime~main.6a6b5940.js",
     "runtime~main.js.map": "/aerolab-coding-challenge/static/js/runtime~main.6a6b5940.js.map",
-    "static/js/2.99234bc9.chunk.js": "/aerolab-coding-challenge/static/js/2.99234bc9.chunk.js",
-    "static/js/2.99234bc9.chunk.js.map": "/aerolab-coding-challenge/static/js/2.99234bc9.chunk.js.map",
+    "static/js/2.6fffce9e.chunk.js": "/aerolab-coding-challenge/static/js/2.6fffce9e.chunk.js",
+    "static/js/2.6fffce9e.chunk.js.map": "/aerolab-coding-challenge/static/js/2.6fffce9e.chunk.js.map",
     "index.html": "/aerolab-coding-challenge/index.html",
-    "precache-manifest.af0cdbe52e21c68fb62ef74ee1fc1fd1.js": "/aerolab-coding-challenge/precache-manifest.af0cdbe52e21c68fb62ef74ee1fc1fd1.js",
+    "precache-manifest.2fd47883c529b00bd8e7d26d8eaf7e49.js": "/aerolab-coding-challenge/precache-manifest.2fd47883c529b00bd8e7d26d8eaf7e49.js",
     "service-worker.js": "/aerolab-coding-challenge/service-worker.js",
     "static/css/main.98cc1aaa.chunk.css.map": "/aerolab-coding-challenge/static/css/main.98cc1aaa.chunk.css.map",
     "static/media/aerolab-logo.svg": "/aerolab-coding-challenge/static/media/aerolab-logo.c6da2094.svg",
     "static/media/aeropay-logo.svg": "/aerolab-coding-challenge/static/media/aeropay-logo.c01e2789.svg",
     "static/media/aeropay-pattern.svg": "/aerolab-coding-challenge/static/media/aeropay-pattern.be33dff9.svg",
     "static/media/coin.svg": "/aerolab-coding-challenge/static/media/coin.b763f02e.svg",
-    "static/media/featured.jpg": "/aerolab-coding-challenge/static/media/featured.5221c3be.jpg",
+    "static/media/featured.jpg": "/aerolab-coding-challenge/static/media/featured.2a0e9681.jpg",
     "static/media/mastercard.svg": "/aerolab-coding-challenge/static/media/mastercard.c408d04d.svg",
-    "static/media/index.css": "/aerolab-coding-challenge/static/media/pattern.66544fb3.svg"
+    "static/media/index.css": "/aerolab-coding-challenge/static/media/pattern.66544fb3.svg",
+    "static/media/placeholder.svg": "/aerolab-coding-challenge/static/media/placeholder.e4252518.svg"
   }
 }
