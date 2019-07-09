@@ -7,19 +7,32 @@ import { RedeemButton } from "../../styles/Button";
 const productGap = "20px";
 
 export const ProductPicture = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  height: 200px;
+  height: auto;
   overflow: hidden;
+
+  @media ${Device.tablet} {
+    height: 200px;
+  }
 
   img {
     display: block;
-    max-width: 90%;
-
+    width: 90%;
+    min-height: 195px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border-radius: $radius;
     transition: 0.5s ease 0s;
+
+    @media ${Device.tablet} {
+      width: auto;
+      height: 90%;
+      min-height: none;
+    }
   }
 `;
 

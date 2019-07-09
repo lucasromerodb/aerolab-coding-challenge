@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 
+import placeholder from "../../assets/placeholder.svg";
 import coin from "../../assets/coin.svg";
 import { ProductBox, Picture, InfoGroup, Group, Coin } from "./Styles";
 
 function ProductAlt({ _id, name, cost, category, img, createDate, index }) {
+  const [imgLow, setImgLow] = useState(placeholder);
+
+  function revealImg() {
+    setImgLow(img.url);
+  }
+
   return (
     <ProductBox index={index}>
-      <Picture src={img.url} alt={name} />
+      <Picture src={imgLow} alt={name} onLoad={revealImg} />
       <Group>
         <InfoGroup>
           <div>{category}</div>

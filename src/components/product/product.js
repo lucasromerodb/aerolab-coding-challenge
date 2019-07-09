@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
+import placeholder from "../../assets/placeholder.svg";
 import coin from "../../assets/coin.svg";
 import { RedeemButton } from "../../styles/Button";
 import {
@@ -23,10 +24,23 @@ function Product({
   redeemedTimes,
   onRequestRedeem
 }) {
+  const [imgLow, setImgLow] = useState(placeholder);
+  const [imgHigh, setImgHigh] = useState(placeholder);
+
+  function revealImg() {
+    setImgLow(img.url);
+    setImgHigh(img.hdUrl);
+  }
+
   return (
     <ProductBox className="Product">
       <ProductPicture>
-        <img src={img.url} alt={name} />
+        <img
+          src={imgHigh}
+          srcSet={`${imgLow} 1024w, ${imgHigh} 3840w`}
+          alt={name}
+          onLoad={revealImg}
+        />
       </ProductPicture>
       <ProductInfo className="Product__details">
         <ProductCategory title={category}>{category}</ProductCategory>

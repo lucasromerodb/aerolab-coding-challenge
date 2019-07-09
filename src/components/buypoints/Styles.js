@@ -57,6 +57,12 @@ export const BuyButtons = styled(ButtonGroup)`
     width: 100%;
     justify-content: center;
   }
+
+  @media (max-width: 320px) {
+    .icon {
+      display: none;
+    }
+  }
 `;
 
 export const Close = styled(Button)`
