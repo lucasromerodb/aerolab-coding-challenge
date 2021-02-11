@@ -13,11 +13,15 @@ import {
   selectRedeemMsg,
   selectSortBy,
   selectRedeemId,
-  selectCurrentPage
+  selectCurrentPage,
 } from "../../ducks/productsDuck";
-import { selectUserPoints, selectUserRedeemHistory, selectUser } from "../../ducks/userDuck";
+import {
+  selectUserPoints,
+  selectUserRedeemHistory,
+  selectUser,
+} from "../../ducks/userDuck";
 
-import Product from "../../components/product";
+import Product from "../../components/Product";
 import Filters from "../../components/filters/Filters";
 import Pagination from "../../components/pagination/Pagination";
 import Featured from "../../components/featured";
@@ -42,19 +46,20 @@ function Products({
   onRequestRedeem,
   onSortProducts,
   onResetRedeemMsg,
-  onSetCurrentPage
+  onSetCurrentPage,
 }) {
   const [prods, setProds] = useState([]);
   const [productsPerPage] = useState(16);
   const pages = pageNumbers(products, productsPerPage);
   const productsRef = useRef();
 
-  const pageInfo = `${currentPage * productsPerPage - productsPerPage + 1} - ${currentPage *
-    productsPerPage} of ${products.length} products`;
+  const pageInfo = `${currentPage * productsPerPage - productsPerPage + 1} - ${
+    currentPage * productsPerPage
+  } of ${products.length} products`;
 
   function findItem() {
     const item = "5a0b35d7734d1d08bf7084c9"; // Nintendo Switch
-    return products.find(i => i._id === item);
+    return products.find((i) => i._id === item);
   }
 
   useEffect(() => {
@@ -97,8 +102,10 @@ function Products({
             </Toolbar>
             <ProductsList className="Products_list">
               {prods.length
-                ? prods.map(p => {
-                    const redeemedTimes = userHistory.filter(r => r.productId === p._id).length;
+                ? prods.map((p) => {
+                    const redeemedTimes = userHistory.filter(
+                      (r) => r.productId === p._id
+                    ).length;
                     return (
                       <Product
                         key={p._id}
@@ -131,7 +138,7 @@ function Products({
   );
 }
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   fetching: selectFetching(store),
   posting: selectPosting(store),
   products: selectProducts(store),
@@ -141,18 +148,15 @@ const mapStateToProps = store => ({
   userPoints: selectUserPoints(store),
   userHistory: selectUserRedeemHistory(store),
   user: selectUser(store),
-  currentPage: selectCurrentPage(store)
+  currentPage: selectCurrentPage(store),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onRequestProducts: () => dispatch(productsCallRequest()),
-  onRequestRedeem: productId => dispatch(redeemCallRequest(productId)),
-  onSortProducts: direction => dispatch(sortProducts(direction)),
+  onRequestRedeem: (productId) => dispatch(redeemCallRequest(productId)),
+  onSortProducts: (direction) => dispatch(sortProducts(direction)),
   onResetRedeemMsg: () => dispatch(resetRedeemMsg()),
-  onSetCurrentPage: page => dispatch(setCurrentPage(page))
+  onSetCurrentPage: (page) => dispatch(setCurrentPage(page)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Products);
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

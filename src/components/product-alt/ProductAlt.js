@@ -9,7 +9,7 @@ function ProductAlt({ _id, name, cost, category, img, createDate, index }) {
   const [imgLow, setImgLow] = useState(placeholder);
 
   function revealImg() {
-    setImgLow(img.url);
+    setImgLow(img.hdUrl);
   }
 
   return (

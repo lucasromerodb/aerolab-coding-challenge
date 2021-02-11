@@ -1,9 +1,9 @@
 import React from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 
-import Products from "./containers/products/";
-import Navigation from "./containers/navigation";
-import History from "./containers/history/";
+import Products from "./containers/Products/";
+import Navigation from "./containers/Navigation";
+import History from "./containers/History/";
 
 import { Wrapper } from "./styles/Mixins";
 

@@ -7,19 +7,26 @@ import {
   pointsCallRequest,
   selectUser,
   selectPointsMsg,
-  resetPointsMsg
+  resetPointsMsg,
 } from "../../ducks/userDuck";
 import { selectRedeemMsg } from "../../ducks/productsDuck";
 
 import User from "../../components/user";
-import Points from "../../components/points";
+import Points from "../../components/Points";
 
 import { Header, Nav, BuyPointsWrapper } from "./Styles";
 import BuyPoints from "../../components/buypoints";
 import NavItems from "../../components/navitems";
 import Alert from "../../components/alert";
 
-function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints, onResetPointsMsg }) {
+function Navigation({
+  user,
+  pointsMsg,
+  redeemMsg,
+  onGetUser,
+  onAddPoints,
+  onResetPointsMsg,
+}) {
   const [openBuy, setOpenBuy] = useState(false);
   const { name, points } = user;
 
@@ -54,19 +61,16 @@ function Navigation({ user, pointsMsg, redeemMsg, onGetUser, onAddPoints, onRese
   );
 }
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
   user: selectUser(store),
   pointsMsg: selectPointsMsg(store),
-  redeemMsg: selectRedeemMsg(store)
+  redeemMsg: selectRedeemMsg(store),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   onGetUser: () => dispatch(userCallRequest()),
-  onAddPoints: amount => dispatch(pointsCallRequest(amount)),
-  onResetPointsMsg: () => dispatch(resetPointsMsg())
+  onAddPoints: (amount) => dispatch(pointsCallRequest(amount)),
+  onResetPointsMsg: () => dispatch(resetPointsMsg()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navigation);
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
